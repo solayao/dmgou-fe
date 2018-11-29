@@ -1,0 +1,14 @@
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: auto;
+  right: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  font-size: 14px;
+  text-align: end;
+  padding: .04rem 0; 
+}
+.ower {
+  color: #a6a6a6; 
+}

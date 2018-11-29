@@ -1,0 +1,25 @@
+.Demo {
+  text-align: left;
+  color: red; }
+
+.Demo-logo {
+  animation: Demo-logo-spin infinite 20s linear;
+  height: .8rem; }
+
+.Demo-header {
+  background-color: #222;
+  height: 1.5rem;
+  padding: .2rem;
+  color: white; }
+
+.Demo-title {
+  font-size: 15px; }
+
+.Demo-intro {
+  font-size: large; }
+
+@keyframes Demo-logo-spin {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(360deg); } }

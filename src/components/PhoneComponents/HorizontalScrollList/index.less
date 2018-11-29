@@ -1,0 +1,114 @@
+// @liHeight: 4rem;
+@liHeight: 134px;
+.HSL {
+    font-size: 16px;
+    .list-item{
+        position: relative;
+        height: @liHeight;
+        -webkit-transition: all 0.2s;
+        transition: all 0.2s;
+    }
+    .list-item[data-type="0"]{
+        transform: translate3d(0,0,0);
+    }
+    .list-item[data-type="1"]{
+        transform: translate3d(-@liHeight,0,0);
+    }
+    .list-item:after{
+        content: " ";
+        position: absolute;
+        left: 0.2rem;
+        bottom: 0;
+        right: 0;
+        height: 1px;
+        border-bottom: 1px solid #ccc;
+        color: #ccc;
+        -webkit-transform-origin: 0 100%;
+        transform-origin: 0 100%;
+        -webkit-transform: scaleY(0.5);
+        transform: scaleY(0.5);
+        z-index: 2;
+    }
+    .list-box{
+        background: #fff;
+        display: flex;
+        align-items: center;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        justify-content: flex-end;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        font-size: 0;
+    }
+    .list-img{
+        display: block;
+        width: 1rem;
+        height: 1rem;
+    }
+    .list-content{
+        padding: 18px 30px;
+        position: relative;
+        flex: 1;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .title{
+        display: block;
+        color: #333;
+        overflow: hidden;
+        font-size: 36px;
+        line-height: 1.2em;
+        font-weight: bold;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .title-right{
+        display: block;
+        font-size: 26px;
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: #666;
+    }
+    .tips{
+        display: block;
+        overflow: hidden;
+        font-size: 28px;
+        line-height: 1em;
+        color: #999;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-top: 18px;
+    }
+    .tips-right{
+        display: block;
+        font-size: 26px;
+        position: absolute;
+        bottom: 20px;
+        right: 30px;
+        color: #666;
+    }
+    .delete{
+        width: @liHeight;
+        height: @liHeight;
+        background: #ff4949;
+        font-size: 36px;
+        color: #fff;
+        text-align: center;
+        position: absolute;
+        top:0;
+        right: -@liHeight;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        & > span {
+            width: 72px;
+            white-space:pre-wrap;
+        }
+    }
+}

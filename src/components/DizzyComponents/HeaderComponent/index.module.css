@@ -1,0 +1,13 @@
+.h {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left {
+  background: red;
+}
+
+.right {
+  background: blue;
+}

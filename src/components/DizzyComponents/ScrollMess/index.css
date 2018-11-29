@@ -1,0 +1,6 @@
+.scroll-mess {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 100%;
+}

@@ -1,0 +1,91 @@
+@import  '../../style/variable.scss';
+
+// DrawerModel
+.dUi-drawer-paper {
+    white-space: nowrap;
+}
+
+//IconTabs
+.dUi-badge-num {
+    right: -30px;
+    opacity: 0.5;
+}
+
+// MediaCard
+$left-right-img-width: 100px;
+
+.dUi-c {
+    height: 100%;
+    @media screen and (min-width: $discern_value) {
+        max-width: 345px;
+    }
+}
+
+.dUi-caa-root {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.dUi-cm-media {
+    height: 150px;
+    width: 100%;
+    background-size: 100% 100%;
+}
+.img-left {
+    padding-left: $left-right-img-width;
+    @media screen and ($discern_key: $discern_value) {
+        padding-left: $left-right-img-width * 3;
+    }
+    .dUi-cm-media{
+        position: absolute;
+        height: 100%;
+        width: $left-right-img-width;
+        top: 0;
+        left: 0;
+        @media screen and ($discern_key: $discern_value) {
+            width: $left-right-img-width * 3;
+        }
+    }
+}
+.img-right {
+    padding-right: $left-right-img-width;
+    @media screen and ($discern_key: $discern_value) {
+        padding-right: $left-right-img-width * 3;
+    }
+    .dUi-cm-media{
+        position: absolute;
+        height: 100%;
+        width: $left-right-img-width;
+        top: 0;
+        right: 0;
+        @media screen and ($discern_key: $discern_value) {
+            width: $left-right-img-width * 3;
+        }
+    } 
+}
+
+// RowGallery
+.dUi-gl-root {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    overflow: hidden,
+}
+.dUi-gl {
+    // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
+    transform: translateZ(0);
+    flex-wrap: nowrap;
+    & li:hover {
+        cursor: pointer;
+    }
+}
+.dUi-gl-tilebar {
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%);
+}
+.dUi-gl-title {
+    font-size: 16px;
+}

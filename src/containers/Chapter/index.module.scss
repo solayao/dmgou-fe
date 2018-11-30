@@ -1,0 +1,45 @@
+.Dui-chapter {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.Dui-chapter-bg {
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Dui-chapter-bread {
+    text-align: left;
+    font-size: 20px;
+}
+
+.Dui-chapter-toolbar {
+    position: fixed;
+    right: 10px;
+    top: 60vh;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    background: white;
+    z-index: 1000;
+    padding: 10px;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+}
+
+.Dui-chapter-toolbar-btn {
+    position: fixed;
+    top: 63vh;
+    right: -15px;;
+    z-index: 1000;
+}
+
+.Dui-chapter-phone-imgList {
+    display: inline-block;
+    background: black;
+    width: 100%;
+    li {
+        margin-bottom: 10px;
+    }
+}

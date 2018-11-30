@@ -1,0 +1,27 @@
+@import '../../../style/variable.scss';
+
+.Dui-comic-media-list{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+
+    @media screen and ($discern_key: $discern_value) {
+        display: flex;
+        flex-direction: column;
+        & > * {
+            margin-top: 20px;
+        }
+    }
+}
+
+.Dui-comicList-media-header {
+    padding: 10px 0 0 0!important;
+}
+.Dui-comicList-media-header-nowrap {
+    max-width: 15vw;
+}
+.Dui-comicList-media-header-content {
+    width: 100%;
+}

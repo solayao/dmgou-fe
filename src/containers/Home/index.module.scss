@@ -1,0 +1,28 @@
+$gap: 10px;
+$rightWidth: 300px;
+$borderStyle: 1px solid #e1e4e8;
+
+.Dui-home {
+    display: flex;
+    justify-content: space-between;
+}
+.Dui-home-left {
+    flex: 1;
+    padding: 0 $gap $gap;;
+    border-right: $borderStyle;
+    border-bottom: $borderStyle;
+}
+.Dui-home-right {
+    width: $rightWidth;
+    padding: 0 $gap $gap;;
+    margin-top: $gap;
+    border-bottom: $borderStyle;
+
+    & .MuiDivider-root {
+        margin-top: $gap;
+        margin-left: -$gap;
+    }
+}
+.Dui-home-comic-list {
+    margin-top: $gap;
+}

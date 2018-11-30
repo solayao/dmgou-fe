@@ -42,7 +42,7 @@ function LoadingComponent (props) {
     };
 
     return (
-        <div className="dUi-loading-default">
+        <div className="Dui-loading-default">
             <div className={`${props.moduleType}`}>
                 {nullDiv()}
             </div>

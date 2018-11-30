@@ -1,0 +1,36 @@
+.ant-Dui-toolbar-phone {
+  position: relative;
+  bottom: 100px !important;
+  background-color: rgba(0, 0, 0, 0.45);
+  border-radius: 20px;
+  color: white !important;
+  padding: 9px 0 !important; }
+
+.ant-Dui-toolbar-phone-collapse {
+  background-color: rgba(0, 0, 0, 0.45);
+  position: absolute;
+  bottom: 45px;
+  width: 40px;
+  border-radius: 20px; }
+
+.ant-Dui-toolbar-phone-hidden {
+  padding: 0 !important; }
+
+.Dui-toolbar-phone-btns {
+  display: flex;
+  flex-direction: column; }
+  .Dui-toolbar-phone-btns > :nth-child(1) {
+    padding-top: 1vh; }
+  .Dui-toolbar-phone-btns p {
+    margin-bottom: 0 !important; }
+
+.Dui-phone-toolbar-search {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.65); }
+
+.Dui-phone-search-histroy {
+  max-height: 80vh !important;
+  top: auto !important; }

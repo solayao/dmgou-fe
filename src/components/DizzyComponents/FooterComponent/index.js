@@ -1,6 +1,5 @@
 import React from 'react';
-import Proptypes from 'prop-types';
-import styles from './index.moudle.css';
+import styles from './index.module.css';
 
 /**
  * Footer部件

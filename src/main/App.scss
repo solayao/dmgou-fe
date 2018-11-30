@@ -1,0 +1,52 @@
+@import '../style/variable.scss';
+// pc
+$drawerWidth: 240px;
+// phone
+$_drawerWidth: $drawerWidth * 2.5;
+$topHeight: 63px;
+#root {
+    min-height: 100vh;    
+}
+.App {
+    position: relative;
+    text-align: center;
+    min-height: 100vh;
+    background-color: #fafafa;
+    & > .ignore {
+        position: absolute;
+        top: $topHeight;
+        // bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0 5px;
+        min-height: calc(100vh - #{$topHeight});
+        background-color: #fafafa;
+        &>:nth-child(1) {
+            padding-bottom: 30px;
+        }
+    }
+}
+
+// overrides
+.Dui-drawer-shift {
+    width: $drawerWidth;
+    white-space: nowrap;
+
+    @media screen and ($discern_key: $discern_value) {
+        width: $_drawerWidth;
+    }
+}
+
+.Dui-abh-shift {
+    width: calc(100% - #{$drawerWidth})!important;
+    margin-left: $drawerWidth;
+
+    @media screen and ($discern_key: $discern_value) {
+        width: calc(100% - #{$_drawerWidth})!important;
+        margin-left: $_drawerWidth;
+    }
+    & .menuButton {
+        display: none;
+    }
+}
+

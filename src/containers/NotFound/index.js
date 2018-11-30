@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './notFound.css';
+import mStyles from './notFound.module.scss';
 
 class NotFound extends Component {
   render() {
-    return <div className="NotFound">Sorry, page has not found!</div>;
+    return <div className={mStyles.notFound}>Sorry, page has not found!</div>;
   }
 }
 

@@ -1,0 +1,38 @@
+@import '../../../style/variable.scss';
+
+.Dui-hcl-piclist, .Dui-hcl-paperlist {
+    width: 100%;
+    padding: 0 2%;
+}
+.Dui-hcl-piclist {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    @media screen and ($discern_key: $discern_value) {
+        display: flex;
+        flex-direction: column;
+        & > * {
+            margin-top: 20px;
+        }
+    }
+}
+.Dui-hcl-paper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 20px 2%;
+    &:hover {
+        box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 3px 3px -2px rgba(0, 0, 0, 0.12);
+    }
+}
+.Dui-hcl-type-button{
+    text-align: right;
+    padding: 0 20px;
+}
+
+/** 对控件已有样式的补充 */
+.Dui-c {
+    height: 100%;
+}

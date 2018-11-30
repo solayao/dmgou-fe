@@ -22,12 +22,12 @@ function HeaderComponent(header) {
 }
 
 function MediaComponent(media) {
-    // const defaultClasses = {   root: 'dUi-cm-media', }; return media ? <CardMedia
+    // const defaultClasses = {   root: 'Dui-cm-media', }; return media ? <CardMedia
     // classes={defaultClasses}   image={media.image}   title={media.title}
     // className={classNames(media.className)} /> : null;
     return media
         ? <LozadWrapper
-            classes={mStyles["dUi-cm-media"]}
+            classes={mStyles["Dui-cm-media"]}
             src={media.image}
             srcset={media.image}
             alt={media.title}/>
@@ -48,7 +48,7 @@ function ActionsComponent(actions) {
 
 // override样式
 const caaClasses = {
-    root: mStyles['dUi-caa-root']
+    root: mStyles['Dui-caa-root']
 };
 /**
  * 媒体卡片
@@ -65,8 +65,8 @@ function MediaCard(props) {
  
     // 控件渲染
     return (
-        <Card className={mStyles["dUi-c"]}>
-            <CardActionArea classes={caaClasses} className={classNames(layout)}>
+        <Card className={mStyles["Dui-c"]}>
+            <CardActionArea classes={caaClasses} className={classNames(mStyles[layout])}>
                 {HeaderComponent(header)}
                 {MediaComponent(media)}
                 {ContentComponent(content)}

@@ -1,0 +1,16 @@
+.Dui-search-input {
+    position: relative;
+}
+.Dui-search-history {
+    position: absolute;
+    left: 0;
+    right: 0;
+    max-height: 250px;
+    overflow-y: auto;
+    background: white;
+    border: 1px solid #e1e4e8;
+}
+.Dui-search-history-hidden {
+    border: none;
+    display: none;
+}

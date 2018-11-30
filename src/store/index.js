@@ -1,5 +1,5 @@
 import { observable, action, configure } from 'mobx';
-import SystemMess from 'dizzyl-util/lib/system/systemMess';
+import { trim } from 'dizzyl-util/lib/string';
 
 /** 使用严格模式 */
 configure({ enforceActions: 'observed' });
@@ -10,7 +10,20 @@ configure({ enforceActions: 'observed' });
  * @class Store
  */
 class Store {
-    @observable isPhone = new SystemMess().isPhone;
+    @observable showDrawler = false;
+    @action changeDrawlerState = state => {
+        this.showDrawler = state !== undefined ? state : !this.showDrawler;
+    }
+
+    @observable searchInputVal = '';
+    @action changeSearchInputVal = (state) => {
+        this.searchInputVal = trim(state);
+    }
+    
+    @observable phoneToolbars = [];
+    @action setToolbarsForPhone = (state) => {
+        this.phoneToolbars = state;
+    }
 };
 
 export default new Store();

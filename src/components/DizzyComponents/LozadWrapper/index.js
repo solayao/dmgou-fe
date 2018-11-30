@@ -67,7 +67,7 @@ class LozadWrapper extends React.Component {
                 ref={this.img}
                 data-src={src}
                 data-srcset={srcset}
-                data-toggle-class="dUi-lozad-loading"
+                data-toggle-class="Dui-lozad-loading"
                 alt={alt}
                 style={style}
                 onError={this.handleError}

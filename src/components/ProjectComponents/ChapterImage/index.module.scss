@@ -1,0 +1,58 @@
+.Dui-chapter-image {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+@mixin Dui-allow($rotate) {
+    background-color: #E0E0E0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    opacity: .2;
+
+    &::before {
+        content: '';
+        display: inline-block;
+        border-left: 16px solid;
+        border-bottom: 16px solid;
+        width: 100px;
+        height: 100px;
+        transform: rotate($rotate);
+    }
+
+    &:hover {
+        opacity: .4;
+        cursor: pointer;
+    }
+}
+
+.Dui-left-allow {
+    @include Dui-allow(45deg);
+}
+
+.Dui-right-allow {
+    @include Dui-allow(-135deg);
+}
+
+.Dui-allow-disabled {
+    cursor: not-allowed!important;
+}
+
+.Dui-chapter-replay {
+    & svg {
+        font-size: 100px; 
+        color: white;
+    }
+}
+
+.Dui-chapter-view_carousel {
+    position: absolute;
+    top: 10px;
+    right: 21%;
+    color: white;
+    
+}

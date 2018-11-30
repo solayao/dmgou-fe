@@ -1,0 +1,54 @@
+
+.Dui-search-box {
+    position: relative;
+
+    .Dui-searchType {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200px;
+        border: 1px solid #DCDCDC;
+        padding: 10px;
+    }
+
+    .Dui-search-list {
+        margin-left: 210px;
+        margin-bottom: 10px;
+        flex: 1;
+    }
+    .Dui-search-list-phone {
+        margin-left: 0!important;
+    }
+}
+
+
+.Dui-search-divider {
+    margin: 10px 0;
+}
+
+.Dui-search-row {
+    font-size: 12px;
+    line-height: 20px;
+    color: #999;
+    text-align: left;
+    & > :first-child {
+        font-size: 14px;
+        padding: 5px 0;
+    }
+}
+
+.Dui-search-items {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.Dui-search-typeItem {
+    padding: 0 5px;
+    cursor: pointer;
+}
+
+.Dui-search-activeItem {
+    border: 1px solid #2196f3;
+    color: #2196f3;
+}
+

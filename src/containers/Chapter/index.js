@@ -163,12 +163,12 @@ class Chapter extends React.Component {
 
     handleChangeNS = (val) => this.setState({imgNo: val})
 
-    handleChangeCh = (ch) => this.setState({ch, imgNo: 1})
+    handleChangeCh = (ch) => this.setState({ch, imgNo: 1, socketImgList: null})
 
     handleSocket = (ch) => {
         const socket = io('http://localhost:12345/fbe');
-        socket.emit('addMQ', ch)
-        socket.on('finishMQ', data => {
+        socket.emit('addMQ-crawlerCH', ch)
+        socket.on('finishMQ-crawlerCH', data => {
             this.setState({
                 socketImgList: data
             })

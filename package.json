@@ -2,7 +2,6 @@
   "name": "cra-fe2",
   "version": "1.0.0",
   "homepage": "./",
-  "proxy": "https://localhost:14627/",
   "private": true,
   "dependencies": {
     "@babel/plugin-proposal-decorators": "^7.1.6",
@@ -17,6 +16,7 @@
     "dizzyl-util": "^2.4.1",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.10.0",
+    "http-proxy-middleware": "^0.19.1",
     "imagemin-webpack-plugin": "^2.3.0",
     "jss": "^9.8.7",
     "lozad": "^1.7.0",

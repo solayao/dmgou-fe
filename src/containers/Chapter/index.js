@@ -15,6 +15,7 @@ import {getChapterGallery} from '@/gqls';
 import Query from '@gql/Query';
 import $Snackbar from '@mui/SnackbarModel';
 import mStyles from './index.module.scss';
+import io from 'socket.io-client';
 
 const Fragment = React.Fragment;
 
@@ -128,6 +129,7 @@ class Chapter extends React.Component {
         this.state = {
             imgNo: 1,
             ch: this.urlSearch.ch,
+            socketImgList: null
         }
         this.sessionChapterList = sessionStorage.getItem(`chapterList-${this.urlSearch.cn}`).split(',');
         this.chapterList = this.sessionChapterList.map(s => s.slice(1));
@@ -163,6 +165,16 @@ class Chapter extends React.Component {
 
     handleChangeCh = (ch) => this.setState({ch, imgNo: 1})
 
+    handleSocket = (ch) => {
+        const socket = io('http://localhost:12345/fbe');
+        socket.emit('addMQ', ch)
+        socket.on('finishMQ', data => {
+            this.setState({
+                socketImgList: data
+            })
+        })
+    }
+
     renderQueryLoading = () => (
         <div className="Dui-chapter-bg" style={{height: 600}}>
             <LoadingComponent moduleType="ball-spin-fade-loader"/>
@@ -175,7 +187,7 @@ class Chapter extends React.Component {
     }))
 
     render() {
-        const {imgNo, ch} = this.state, {history} = this.props, {cn, co} = this.urlSearch;
+        const {imgNo, ch, socketImgList} = this.state, {history} = this.props, {cn, co} = this.urlSearch;
         const chapterType = this.sessionChapterList[this.chapterList.indexOf(ch)]
             .includes('本') ? '本篇' : '番外';
   
@@ -185,12 +197,20 @@ class Chapter extends React.Component {
             >{({data}) => {
                     const {chapterDetailGallery} = data;
                     const {name, imgList} = chapterDetailGallery;
-                    if (imgList.length === 0) {
+                    let imgResource = imgList;
+                    if (imgList.length === 0 && !socketImgList) {
+                        this.handleSocket(ch);
+                        return this.renderQueryLoading();
+                    }
+                    if (socketImgList && socketImgList.length === 0) {
                         $Snackbar({
                             content: '没有该漫画资源'
                         });
                         history.go(-1);
                         return null;
+                    }
+                    if (socketImgList && socketImgList.length > 0) {
+                        imgResource = socketImgList;
                     }
                     return (
                         <div className={mStyles["Dui-chapter"]}>
@@ -208,14 +228,14 @@ class Chapter extends React.Component {
                     
                             <div className={mStyles["Dui-chapter-bg"]}>
                                 <ChapterImage
-                                    imgUrlList={imgList}
+                                    imgUrlList={imgResource}
                                     showImgNo={parseInt(imgNo, 10)}
                                     changePageNum={this.handleChangeImagePage}
                                 />
                             </div>
                         
                             <RowGallery
-                                tileList={this.getGalleryList(imgList)}
+                                tileList={this.getGalleryList(imgResource)}
                                 cols={3.5}
                                 itemClick={this.handleGalleryItemClick}
                             />
@@ -226,7 +246,7 @@ class Chapter extends React.Component {
                                 co={co}
                                 name={`${chapterType} ${name}`}
                                 imgNo={imgNo}
-                                imgList={imgList}
+                                imgList={imgResource}
                                 handleChangeNS={this.handleChangeNS}
                                 handleChangeCh={this.handleChangeCh}
                             />

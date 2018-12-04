@@ -9,6 +9,7 @@ import LozadWrapper from '@dizzy/LozadWrapper';
 import Query from '@gql/Query';
 import {getChapterGallery} from '@/gqls';
 import Scroll from '@phone/Scroll';
+import io from 'socket.io-client';
 
 import $Dialog from '@mui/DialogModel';
 import $Snackbar from '@mui/SnackbarModel';
@@ -27,6 +28,7 @@ class ChapterPhone extends React.Component {
         this.urlSearch = JSON.parse(sessionStorage.getItem('urlSearch'));
         this.state = {
             ch: this.urlSearch.ch,
+            socketImgList: null
         };
 
         if (!props.isPhone) this.isNotPhoneRedice();
@@ -121,6 +123,18 @@ class ChapterPhone extends React.Component {
         });
     }
 
+    handleSocket = (ch) => {
+        const socketio = io(process.env.REACT_APP_SOCKETIO_PATH);
+        socketio.emit('addMQ-crawlerCH', ch)
+        socketio.on('finishMQ-crawlerCH', data => {
+            this.setState({
+                socketImgList: data
+            }, () => {
+                socketio.close();
+            })
+        })
+    }
+
     renderLoading = (
         <div
             className={mStyles["Dui-chapter-bg"]}
@@ -130,7 +144,7 @@ class ChapterPhone extends React.Component {
     )
 
     render() {
-        const { history } = this.props, {cn} = this.urlSearch, {ch} = this.state;
+        const { history } = this.props, {cn} = this.urlSearch, {ch, socketImgList} = this.state;
         const sessionChapterList = sessionStorage.getItem(`chapterList-${cn}`).split(',');
         const chapterList = sessionChapterList.map(s => s.slice(1));
         const chapterType = sessionChapterList[chapterList.indexOf(ch)]
@@ -143,12 +157,20 @@ class ChapterPhone extends React.Component {
                     {({data}) => {
                         const {chapterDetailGallery} = data;
                         const {name, imgList} = chapterDetailGallery;
-                        if (imgList.length === 0) {
+                        let imgResource = imgList;
+                        if (imgList.length === 0 && !socketImgList) {
+                            this.handleSocket(ch);
+                            return this.renderLoading
+                        }
+                        if (socketImgList && socketImgList.length === 0) {
                             $Snackbar({
                                 content: '没有该漫画资源'
                             });
                             history.go(-1);
                             return null;
+                        }
+                        if (socketImgList && socketImgList.length > 0) {
+                            imgResource = socketImgList;
                         }
                         return (
                             <React.Fragment>
@@ -169,7 +191,7 @@ class ChapterPhone extends React.Component {
                                     height={this.boxWidth*1.45}>
                                     <ul className={mStyles["Dui-chapter-phone-imgList"]}>
                                         {
-                                            imgList.map((src, index) => (
+                                            imgResource.map((src, index) => (
                                                 <li key={index} style={{
                                                     minHeight: this.boxWidth,
                                                     height: 'auto'

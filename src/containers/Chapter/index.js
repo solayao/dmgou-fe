@@ -13,8 +13,8 @@ import NoWrapTypography from '@mui/NoWrapTypography';
 import ChapterImage from '@proje/ChapterImage';
 import {getChapterGallery} from '@/gqls';
 import Query from '@gql/Query';
-import $Snackbar from '@mui/SnackbarModel';
 import mStyles from './index.module.scss';
+import $Snackbar from '@mui/SnackbarModel';
 import io from 'socket.io-client';
 
 const Fragment = React.Fragment;
@@ -133,7 +133,6 @@ class Chapter extends React.Component {
         }
         this.sessionChapterList = sessionStorage.getItem(`chapterList-${this.urlSearch.cn}`).split(',');
         this.chapterList = this.sessionChapterList.map(s => s.slice(1));
-
         if (props.isPhone) this.isPhoneRedice();
     }
 
@@ -166,11 +165,13 @@ class Chapter extends React.Component {
     handleChangeCh = (ch) => this.setState({ch, imgNo: 1, socketImgList: null})
 
     handleSocket = (ch) => {
-        const socket = io('http://localhost:12345/fbe');
-        socket.emit('addMQ-crawlerCH', ch)
-        socket.on('finishMQ-crawlerCH', data => {
+        const socketio = io(process.env.REACT_APP_SOCKETIO_PATH);
+        socketio.emit('addMQ-crawlerCH', ch)
+        socketio.on('finishMQ-crawlerCH', data => {
             this.setState({
                 socketImgList: data
+            }, () => {
+                socketio.close();
             })
         })
     }

@@ -27,6 +27,7 @@ const comicMedia = (obj, isPhone) => {
         },
         media: {
             image: obj.icon,
+            srcset: obj.icon,
             title: obj.name
         },
         content: {

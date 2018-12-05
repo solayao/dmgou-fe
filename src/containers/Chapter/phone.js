@@ -143,6 +143,13 @@ class ChapterPhone extends React.Component {
             }}><LoadingComponent moduleType="ball-spin-fade-loader"/></div>
     )
 
+    getImgSrcSet = (src) => {
+        let src1x = `${src}?w=${this.boxWidth}&h=0&q=100 1x`;
+        let src2x = `${src}?w=${this.boxWidth*2}&h=0&q=100 2x`;
+        let src3x = `${src}?w=${this.boxWidth*3}&h=0&q=100 3x`;
+        return `${src1x}, ${src2x}, ${src3x}`;
+    }
+
     render() {
         const { history } = this.props, {cn} = this.urlSearch, {ch, socketImgList} = this.state;
         const sessionChapterList = sessionStorage.getItem(`chapterList-${cn}`).split(',');
@@ -198,6 +205,7 @@ class ChapterPhone extends React.Component {
                                                 }}>
                                                     <LozadWrapper 
                                                         src={src+`?w=${this.boxWidth}&h=0&q=100`}
+                                                        srcset={this.getImgSrcSet(src)}
                                                         alt={'第'+index+'张'}
                                                     />
                                                 </li>

@@ -184,6 +184,7 @@ class Chapter extends React.Component {
 
     getGalleryList = imgList => imgList.map((url, index) => ({
         img: url + '?w=100&h=150&q=50',
+        srcset: url + '?w=100&h=150&q=50',
         title: `第${index + 1}页`
     }))
 

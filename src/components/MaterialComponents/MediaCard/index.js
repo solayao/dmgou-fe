@@ -29,7 +29,7 @@ function MediaComponent(media) {
         ? <LozadWrapper
             classes={mStyles["Dui-cm-media"]}
             src={media.image}
-            srcset={media.image}
+            srcset={media.srcset}
             alt={media.title}/>
         : null;
 }

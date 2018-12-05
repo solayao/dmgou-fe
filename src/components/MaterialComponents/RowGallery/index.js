@@ -44,7 +44,7 @@ function RowGallery(props) {
             <GridList className={mStyles["Dui-gl"]} cols={cols} onClick={handleClickList}>
                 {tileList.map(tile => (
                     <GridListTile key={shortid.generate()}>
-                        <LozadWrapper src={tile.img} srcset={tile.img} alt={tile.title} />
+                        <LozadWrapper src={tile.img} srcset={tile.srcset} alt={tile.title} />
                         <GridListTileBar
                             title={tile.title}
                             classes={GridListTileBarClasses}

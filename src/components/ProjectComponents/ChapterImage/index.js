@@ -71,10 +71,17 @@ class ChapterImage extends React.Component {
         )
     }
     
+    getImgSrcSet = (src) => {
+        let src1x = `${src}?w=${500}&h=0&q=100 1x`;
+        let src2x = `${src}?w=${500*2}&h=0&q=100 2x`;
+        let src3x = `${src}?w=${500*3}&h=0&q=100 3x`;
+        return `${src1x}, ${src2x}, ${src3x};`
+    }
 
     render() {
         const {imgUrlList} = this.props, {pageNo, loading, error} = this.state;
         const imgSrc = imgUrlList[pageNo - 1] + '?w=500&h=0&q=100';
+        const imgSrcSet = this.getImgSrcSet(imgUrlList[pageNo - 1]);
 
         return (
             <div className={mStyles["Dui-chapter-image"]}>

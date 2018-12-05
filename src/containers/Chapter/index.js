@@ -133,6 +133,7 @@ class Chapter extends React.Component {
         }
         this.sessionChapterList = sessionStorage.getItem(`chapterList-${this.urlSearch.cn}`).split(',');
         this.chapterList = this.sessionChapterList.map(s => s.slice(1));
+        this.socketio = null;
         if (props.isPhone) this.isPhoneRedice();
     }
 
@@ -143,7 +144,11 @@ class Chapter extends React.Component {
     }
 
     componentWillUnmount() {
-        this.sessionChapterList = this.chapterList = this.urlSearch = null;
+        if (this.socketio) this.socketio.close();
+        this.sessionChapterList =
+            this.chapterList =
+            this.socketio = 
+            this.urlSearch = null;
     }
 
     isPhoneRedice = () => {
@@ -165,13 +170,14 @@ class Chapter extends React.Component {
     handleChangeCh = (ch) => this.setState({ch, imgNo: 1, socketImgList: null})
 
     handleSocket = (ch) => {
-        const socketio = io(process.env.REACT_APP_SOCKETIO_PATH);
-        socketio.emit('addMQ-crawlerCH', ch)
-        socketio.on('finishMQ-crawlerCH', data => {
+        this.socketio = io(process.env.REACT_APP_SOCKETIO_PATH);
+        this.socketio.emit('addMQ-crawlerCH', ch)
+        this.socketio.on('finishMQ-crawlerCH', data => {
             this.setState({
                 socketImgList: data
             }, () => {
-                socketio.close();
+                this.socketio.close();
+                this.socketio = null;
             })
         })
     }

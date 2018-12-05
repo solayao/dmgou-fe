@@ -25,6 +25,7 @@ class ChapterPhone extends React.Component {
     constructor(props) {
         super(props);
         this.boxWidth = null;
+        this.socketio = null;
         this.urlSearch = JSON.parse(sessionStorage.getItem('urlSearch'));
         this.state = {
             ch: this.urlSearch.ch,
@@ -50,8 +51,9 @@ class ChapterPhone extends React.Component {
     }
     
     componentWillUnmount () {
-        this.urlSearch = null;
+        if (this.socketio) this.socketio.close();
         this.props.setToolbarsForPhone([]);
+        this.urlSearch = this.socketio = null;
     }
 
     isNotPhoneRedice = () => {
@@ -124,13 +126,14 @@ class ChapterPhone extends React.Component {
     }
 
     handleSocket = (ch) => {
-        const socketio = io(process.env.REACT_APP_SOCKETIO_PATH);
-        socketio.emit('addMQ-crawlerCH', ch)
-        socketio.on('finishMQ-crawlerCH', data => {
+        this.socketio = io(process.env.REACT_APP_SOCKETIO_PATH);
+        this.socketio.emit('addMQ-crawlerCH', ch)
+        this.socketio.on('finishMQ-crawlerCH', data => {
             this.setState({
                 socketImgList: data
             }, () => {
-                socketio.close();
+                this.socketio.close();
+                this.socketio = null;
             })
         })
     }

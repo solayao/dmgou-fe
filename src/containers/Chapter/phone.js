@@ -127,8 +127,8 @@ class ChapterPhone extends React.Component {
 
     handleSocket = (ch) => {
         this.socketio = io(process.env.REACT_APP_SOCKETIO_PATH);
-        this.socketio.emit('addMQ-crawlerCH', ch)
-        this.socketio.on('finishMQ-crawlerCH', data => {
+        this.socketio.emit('fe-crawelr-by-ch', ch)
+        this.socketio.on('fe-craweler-by-ch-back', data => {
             this.setState({
                 socketImgList: data
             }, () => {

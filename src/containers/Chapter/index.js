@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {Breadcrumb} from 'antd';
+import {isNotEmpty} from 'dizzyl-util/lib/type';
 import Typography from '@material-ui/core/Typography';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import Button from '@material-ui/core/Button';
@@ -11,11 +12,10 @@ import RowGallery from '@mui/RowGallery';
 import LoadingComponent from '@dizzy/LoadingComponent';
 import NoWrapTypography from '@mui/NoWrapTypography';
 import ChapterImage from '@proje/ChapterImage';
-import {getChapterGallery} from '@/gqls';
+import {getChapterGallery} from '@/query';
 import Query from '@gql/Query';
 import mStyles from './index.module.scss';
 import $Snackbar from '@mui/SnackbarModel';
-import io from 'socket.io-client';
 
 const Fragment = React.Fragment;
 
@@ -131,9 +131,15 @@ class Chapter extends React.Component {
             ch: this.urlSearch.ch,
             socketImgList: null
         }
-        this.sessionChapterList = sessionStorage.getItem(`chapterList-${this.urlSearch.cn}`).split(',');
+        if (isNotEmpty(sessionStorage.getItem(`chapterList-${this.urlSearch.cn}`))) {
+            this.sessionChapterList = sessionStorage.getItem(`chapterList-${this.urlSearch.cn}`).split(',');
+        } else {
+            props.history.push({
+                pathname: '/detail',
+                search: `cn=${encodeURIComponent(this.urlSearch.cn)}`
+            });
+        }
         this.chapterList = this.sessionChapterList.map(s => s.slice(1));
-        this.socketio = null;
         if (props.isPhone) this.isPhoneRedice();
     }
 
@@ -144,10 +150,8 @@ class Chapter extends React.Component {
     }
 
     componentWillUnmount() {
-        if (this.socketio) this.socketio.close();
         this.sessionChapterList =
             this.chapterList =
-            this.socketio = 
             this.urlSearch = null;
     }
 
@@ -170,14 +174,10 @@ class Chapter extends React.Component {
     handleChangeCh = (ch) => this.setState({ch, imgNo: 1, socketImgList: null})
 
     handleSocket = (ch) => {
-        this.socketio = io(process.env.REACT_APP_SOCKETIO_PATH);
-        this.socketio.emit('fe-crawelr-by-ch', ch)
-        this.socketio.on('fe-craweler-by-ch-back', data => {
+        this.props.socketio.emit('fe-crawelr-by-ch', ch)
+        this.props.socketio.on('fe-craweler-by-ch-back', data => {
             this.setState({
                 socketImgList: data
-            }, () => {
-                this.socketio.close();
-                this.socketio = null;
             })
         })
     }

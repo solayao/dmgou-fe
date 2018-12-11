@@ -30,7 +30,8 @@ function MediaComponent(media) {
             classes={mStyles["Dui-cm-media"]}
             src={media.image}
             srcset={media.srcset}
-            alt={media.title}/>
+            alt={media.title}
+            imgErrCB={media.imgErrCB} />
         : null;
 }
 

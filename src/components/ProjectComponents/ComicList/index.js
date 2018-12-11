@@ -9,7 +9,7 @@ import MediaCard from '@mui/MediaCard';
 import mStyles from './index.module.scss';
 
 const Fragment = React.Fragment;
-const comicMedia = (obj, isPhone) => {
+const comicMedia = (obj, isPhone, socketio) => {
     const props = {
         layout: 'img-left',
         header: {
@@ -28,7 +28,10 @@ const comicMedia = (obj, isPhone) => {
         media: {
             image: obj.icon,
             srcset: obj.icon,
-            title: obj.name
+            title: obj.name,
+            imgErrCB: () =>　{
+                socketio.emit('fe-crawelr-latest', obj.id);
+            }
         },
         content: {
             children: (
@@ -61,11 +64,10 @@ const comicMedia = (obj, isPhone) => {
 };
 
 function ComicList(props) {
-    const { comicDataList, isPhone} = props;
-
+    const { comicDataList, isPhone, socketio} = props;
     return (
         <div className={mStyles["Dui-comic-media-list"]}>
-            {comicDataList.map(comic => comicMedia(comic, isPhone))}
+            {comicDataList.map(comic => comicMedia(comic, isPhone, socketio))}
         </div>
     );
 }
@@ -73,6 +75,7 @@ function ComicList(props) {
 ComicList.propTypes = {
     comicDataList: Proptypes.array.isRequired,
     isPhone: Proptypes.bool,
+    socketio: Proptypes.object,
 };
 ComicList.defaultProps = {
     comicDataList: [],

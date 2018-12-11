@@ -18,6 +18,7 @@ export default ({ childProps }) => (
                 isAuth: isAuth && isAuth(childProps.location),
                 noAuthTo,
                 isPhone: childProps.isPhone,
+                socketio: childProps.socketio,
               };
               return <C {...rest} props={cProp} key={rest.path} />;
           })

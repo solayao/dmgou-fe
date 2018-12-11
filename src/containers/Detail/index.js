@@ -7,7 +7,7 @@ import {inject, observer} from 'mobx-react';
 import mStyles from './index.module.scss';
 import ExpansionCard from '@mui/ExpansionCard';
 import Query from '@gql/Query';
-import { getComicDetail } from '@/gqls'; 
+import { getComicDetail } from '@/query'; 
 
 function Detail(props) {
     const { history, changeSearchInputVal, isPhone } = props;

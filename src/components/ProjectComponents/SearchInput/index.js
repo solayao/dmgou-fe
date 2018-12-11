@@ -8,7 +8,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Query from '@gql/Query';
-import {getComicListByName} from '@/gqls';
+import {getComicListByName} from '@/query';
 import mStyles from './index.module.scss';
 import {isNotEmpty} from 'dizzyl-util/lib/type';
 

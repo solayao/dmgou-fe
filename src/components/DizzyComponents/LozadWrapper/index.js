@@ -15,6 +15,7 @@ import './index.css';
  * @prop {String} srcset
  * @prop {String} alt
  * @prop {Array/String} classes
+ * @prop {Function} imgErrCB
  */
 class LozadWrapper extends React.Component {
     constructor(props) {
@@ -45,16 +46,20 @@ class LozadWrapper extends React.Component {
     }
 
     handleError = (e) => {
-        const {src, srcset} = this.props, {retry} = this.state;
+        const {src, srcset, imgErrCB} = this.props, {retry} = this.state;
         if (!retry) {
             this.img.current.setAttribute('src', src);
             this.img.current.setAttribute('srcset', srcset);
+            this.img.current.addEventListener('error', this.handleError);
             this.setState({
                 retry: true
             })
         } else {
             this.img.current.setAttribute('src', ErrorImg);
             this.img.current.setAttribute('srcset', ErrorImg);
+            if (imgErrCB) {
+                imgErrCB()
+            }
         }
     }
 
@@ -82,6 +87,7 @@ LozadWrapper.propTypes = {
     alt: Proptypes.string.isRequired,
     classes: Proptypes.oneOfType([Proptypes.string, Proptypes.array]),
     style: Proptypes.oneOfType([Proptypes.string, Proptypes.object]),
+    imgErrCB: Proptypes.func,
 }
 LozadWrapper.defaultProps = {};
 

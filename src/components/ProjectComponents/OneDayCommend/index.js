@@ -2,7 +2,7 @@ import React from 'react';
 import shortid from 'shortid';
 import Proptypes from 'prop-types';
 import Query from '@gql/Query';
-import {getOneDayCommend} from '@/gqls';
+import {getOneDayCommend} from '@/query';
 import NoWrapTypography from '@mui/NoWrapTypography';
 import {Link} from 'react-router-dom';
 

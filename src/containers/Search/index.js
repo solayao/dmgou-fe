@@ -6,7 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Divider from '@material-ui/core/Divider';
 import SearchIcon from '@material-ui/icons/Search';
-import {getAllComicType, getSearchComicList} from '@/gqls';
+import {getAllComicType, getSearchComicList} from '@/query';
 import { trim } from 'dizzyl-util/lib/string';
 import { isNotEmpty } from 'dizzyl-util/lib/type';
 import PaginationModel from '@antd/PaginationModel';
@@ -23,9 +23,9 @@ const defaultPageProps = {
     id: undefined,
 };
 const sortItmeList = [
-    { show: '随机', value: 'random' },
-    { show: '时间升序', value: 't_up' },
     { show: '时间降序', value: 't_dom' },
+    { show: '时间升序', value: 't_up' },
+    { show: '随机', value: 'random' },
 ];
 
 @inject((stores) => ({
@@ -41,7 +41,7 @@ class Search extends React.Component {
         this.state = {
             inputVal: '',
             searchProps: {},
-            sortProps : 'random',
+            sortProps : 't_dom',
             pageProps: {...defaultPageProps}
         }
     }
@@ -100,7 +100,11 @@ class Search extends React.Component {
 
     handleItemClick = (key, value) => () => {
         let copy = {...this.state.searchProps};
-        copy[key] = value;
+        if (copy[key] === value) {
+            delete copy[key];
+        } else {
+            copy[key] = value;
+        }
         this.setState({
             searchProps: copy,
             pageProps: {...defaultPageProps}
@@ -193,6 +197,7 @@ class Search extends React.Component {
 
     renderComicList = (isPhone) => {
         const { searchProps, pageProps, sortProps } = this.state;
+        const { socketio } = this.props;
         return (
             <Query query={getSearchComicList} 
                 variables={{kv: JSON.stringify(searchProps), ...pageProps, sort: sortProps}} 
@@ -205,7 +210,7 @@ class Search extends React.Component {
                     return (
                         <Fragment>
                             <div className={classNames(mStyle["Dui-search-list"], isPhone && mStyle["Dui-search-list-phone"])}>
-                                <ComicList comicDataList={result} isPhone={isPhone} />
+                                <ComicList comicDataList={result} isPhone={isPhone} socketio={socketio} />
                             </div>
                             <PaginationModel
                                 current={pageProps.no}

@@ -12,7 +12,7 @@ import Paper from '@material-ui/core/Paper';
 import shortid from 'shortid';
 import {Link} from 'react-router-dom';
 import mStyles from './index.module.scss';
-import {getHomeComicList} from '@/gqls';
+import {getHomeComicList} from '@/query';
 import {isNotEmpty} from 'dizzyl-util/lib/type';
 import Query from '@gql/Query';
 import IconTabs from '@mui/IconTabs';

@@ -1,7 +1,7 @@
 import React from 'react';
 import Query from '@gql/Query';
 import NoticeModel from '@proje/NoticeModel';
-import {getNotice} from '@/gqls';
+import {getNotice} from '@/query';
 
 let storageKey = 'notice';
 

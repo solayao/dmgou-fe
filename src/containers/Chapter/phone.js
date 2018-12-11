@@ -7,9 +7,9 @@ import mStyles from './index.module.scss';
 import LoadingComponent from '@dizzy/LoadingComponent';
 import LozadWrapper from '@dizzy/LozadWrapper';
 import Query from '@gql/Query';
-import {getChapterGallery} from '@/gqls';
+import {getChapterGallery} from '@/query';
 import Scroll from '@phone/Scroll';
-import io from 'socket.io-client';
+import {isNotEmpty} from 'dizzyl-util/lib/type';
 
 import $Dialog from '@mui/DialogModel';
 import $Snackbar from '@mui/SnackbarModel';
@@ -25,8 +25,15 @@ class ChapterPhone extends React.Component {
     constructor(props) {
         super(props);
         this.boxWidth = null;
-        this.socketio = null;
         this.urlSearch = JSON.parse(sessionStorage.getItem('urlSearch'));
+        if (isNotEmpty(sessionStorage.getItem(`chapterList-${this.urlSearch.cn}`))) {
+            this.sessionChapterList = sessionStorage.getItem(`chapterList-${this.urlSearch.cn}`).split(',');
+        } else {
+            props.history.push({
+                pathname: '/detail',
+                search: `cn=${encodeURIComponent(this.urlSearch.cn)}`
+            });
+        }
         this.state = {
             ch: this.urlSearch.ch,
             socketImgList: null
@@ -51,9 +58,8 @@ class ChapterPhone extends React.Component {
     }
     
     componentWillUnmount () {
-        if (this.socketio) this.socketio.close();
         this.props.setToolbarsForPhone([]);
-        this.urlSearch = this.socketio = null;
+        this.urlSearch = null;
     }
 
     isNotPhoneRedice = () => {
@@ -126,14 +132,10 @@ class ChapterPhone extends React.Component {
     }
 
     handleSocket = (ch) => {
-        this.socketio = io(process.env.REACT_APP_SOCKETIO_PATH);
-        this.socketio.emit('fe-crawelr-by-ch', ch)
-        this.socketio.on('fe-craweler-by-ch-back', data => {
+        this.props.socketio.emit('fe-crawelr-by-ch', ch)
+        this.props.socketio.on('fe-craweler-by-ch-back', data => {
             this.setState({
                 socketImgList: data
-            }, () => {
-                this.socketio.close();
-                this.socketio = null;
             })
         })
     }

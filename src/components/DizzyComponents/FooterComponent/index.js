@@ -11,8 +11,8 @@ const year = new Date().getFullYear();
 function FooterComponent(props) {
     return(
         <footer className={styles.footer}>
-           ©Copyright 2017-{year} Design by <span className={styles.ower}>Solayao</span>
-           <a href="http://www.miitbeian.gov.cn/" target="_blank"> [网站备案：粤ICP备18066176号-2]</a>
+           ©Copyright 2017-{year} Design by <span className={styles.ower}>DizzyL</span>
+           {/* <a href="http://www.miitbeian.gov.cn/" target="_blank"> [网站备案：粤ICP备18066176号-2]</a> */}
         </footer>
     );
 }

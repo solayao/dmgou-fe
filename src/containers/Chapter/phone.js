@@ -150,8 +150,8 @@ class ChapterPhone extends React.Component {
 
     getImgSrcSet = (src) => {
         let src1x = `${src}?w=${this.boxWidth}&h=0&q=100 1x`;
-        let src2x = `${src}?w=${this.boxWidth*2}&h=0&q=100 2x`;
-        let src3x = `${src}?w=${this.boxWidth*3}&h=0&q=100 3x`;
+        let src2x = `${src}?w=${this.boxWidth*2}&h=0&q=95 2x`;
+        let src3x = `${src}?w=${this.boxWidth*3}&h=0&q=90 3x`;
         return `${src1x}, ${src2x}, ${src3x}`;
     }
 

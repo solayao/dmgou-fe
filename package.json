@@ -13,7 +13,7 @@
     "better-scroll": "^1.13.2",
     "classnames": "^2.2.6",
     "craco-antd": "^1.5.0",
-    "dizzyl-util": "^2.4.1",
+    "dizzyl-util": "^2.5.3",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.10.0",
     "http-proxy-middleware": "^0.19.1",

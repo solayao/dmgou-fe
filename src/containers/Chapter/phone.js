@@ -132,8 +132,8 @@ class ChapterPhone extends React.Component {
     }
 
     handleSocket = (ch) => {
-        this.props.socketio.emit('fe-crawelr-by-ch', ch)
-        this.props.socketio.on('fe-craweler-by-ch-back', data => {
+        this.props.socketio.emit('fe-crawler-by-ch', ch)
+        this.props.socketio.on('fe-crawler-by-ch-back', data => {
             this.setState({
                 socketImgList: data
             })

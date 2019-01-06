@@ -174,8 +174,8 @@ class Chapter extends React.Component {
     handleChangeCh = (ch) => this.setState({ch, imgNo: 1, socketImgList: null})
 
     handleSocket = (ch) => {
-        this.props.socketio.emit('fe-crawelr-by-ch', ch)
-        this.props.socketio.on('fe-craweler-by-ch-back', data => {
+        this.props.socketio.emit('fe-crawler-by-ch', ch)
+        this.props.socketio.on('fe-crawler-by-ch-back', data => {
             this.setState({
                 socketImgList: data
             })

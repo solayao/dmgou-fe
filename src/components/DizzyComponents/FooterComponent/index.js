@@ -1,4 +1,6 @@
 import React from 'react';
+import classNames from 'classnames';
+import Proptypes from 'prop-types';
 import styles from './index.module.css';
 
 const year = new Date().getFullYear();
@@ -10,14 +12,19 @@ const year = new Date().getFullYear();
  */
 function FooterComponent(props) {
     return(
-        <footer className={styles.footer}>
-           ©Copyright 2017-{year} Design by <span className={styles.ower}>DizzyL</span>
-           {/* <a href="http://www.miitbeian.gov.cn/" target="_blank"> [网站备案：粤ICP备18066176号-2]</a> */}
+        <footer className={classNames(styles.footer, props.orClassName)}>
+            {props.children}
+            <p>
+                ©Copyright 2017-{year} Design by <span className={styles.ower}>DizzyL</span>
+                {/* <a href="http://www.miitbeian.gov.cn/" target="_blank"> [网站备案：粤ICP备18066176号-2]</a> */}
+            </p>
         </footer>
     );
 }
 
-FooterComponent.propTypes = {};
+FooterComponent.propTypes = {
+    orClassName: Proptypes.String,
+};
 FooterComponent.defaultProps = {};
 
 export default FooterComponent;

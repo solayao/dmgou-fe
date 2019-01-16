@@ -3,7 +3,7 @@ import AppliedRoute from '../components/DizzyComponents/AppliedRoute';
 import AuthenticatedRoute from '../components/DizzyComponents/AuthenticatedRoute';
 import {isNotEmpty} from 'dizzyl-util/lib/type';
 /** 异步控件 */
-const AsyncDemo = createAsyncComponent('Demo');
+// const AsyncDemo = createAsyncComponent('Demo');
 const AsyncHome = createAsyncComponent('Home');
 const AsyncDetail = createAsyncComponent('Detail');
 const AsyncChapter = createAsyncComponent('Chapter');
@@ -45,13 +45,13 @@ export default {
         C: AppliedRoute,
         component: AsyncHome
     },
-    demo: {
-        path: '/demo',
-        exact: true,
-        text: '测试',
-        C: AppliedRoute,
-        component: AsyncDemo
-    },
+    // demo: {
+    //     path: '/demo',
+    //     exact: true,
+    //     text: '测试',
+    //     C: AppliedRoute,
+    //     component: AsyncDemo
+    // },
     detail: {
         path: '/detail',
         text: '详情',

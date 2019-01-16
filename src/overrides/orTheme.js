@@ -3,6 +3,13 @@
  * @url https://material-ui.com/customization/themes/
  */
 export default {
+    palette: {
+        primary: {
+          light: '#F6FF9A',
+          main: '#FFEB3B',
+          contrastText: '#000000',
+        },
+    },
     typography: {
         useNextVariants: true,
         caption: {
@@ -79,6 +86,11 @@ export default {
         MuiTab: {
             labelIcon: {
                 minHeight: '50px'
+            }
+        },
+        MuiDrawer: {
+            paper: {
+                background: '#FFF7B0',
             }
         }
     }

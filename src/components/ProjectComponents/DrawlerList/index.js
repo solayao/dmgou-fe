@@ -36,7 +36,7 @@ function DrawlerList(props) {
                     <NavLink to={obj.path} onClick={handleItemClick} key={shortid.generate()}>
                         <Tooltip title={obj.text} placement="right">
                             <ListItem button selected={obj.path === activePath}>
-                                <ListItemIcon>
+                                <ListItemIcon classes={{root: classes.listItemIcon}}>
                                     { obj.icon ? obj.icon : <StarRounded />}
                                 </ListItemIcon>
                                 <ListItemText primary={obj.text} classes={{root: classes.listItemText}} />

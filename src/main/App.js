@@ -27,7 +27,7 @@ const drawerListContentList = [
     { ...RouteConfig.home, icon: <HomeIcon/> },
     { ...RouteConfig.search, icon: <FindInPage/> },
 ];
-const titleNode = (<Fragment>动漫狗</Fragment>);
+const titleNode = (<Fragment>DMGOU</Fragment>);
 const headerOther = (classes, isPhone) => (
     !isPhone ? (
         <div className={classes.search}>
@@ -92,7 +92,14 @@ function App(props) {
                                 <div className="ignore">
                                     <Routes childProps={{location, isPhone, socketio}}/>
 
-                                    <MyFooter orClassName={classNames(classes.appFooter)} />
+                                    <MyFooter orClassName={classNames(classes.appFooter)}>
+                                        <p>
+                                        免责声明            |                隐私政策                      |               联系我们
+                                        </p>
+                                        <p>
+                                            本站漫画等相关内容均来自互联网，以供漫画爱好者研究漫画画法技巧和构图方式，若侵犯到您的权益，请立即联系我们删除。本站不负任何相关责任。
+                                        </p>
+                                    </MyFooter>
                                 </div>
                                 
                             </div>

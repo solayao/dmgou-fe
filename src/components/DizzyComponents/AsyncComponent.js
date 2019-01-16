@@ -41,5 +41,6 @@ function asyncComponent(importComponent) {
  * @returns {ReactNode | null}
  */
 export default function createAsyncComponent(pathName, path = 'containers') {
-  return asyncComponent(() => import(`@/${path}/${pathName}`));
+  // return asyncComponent(() => import(`@/${path}/${pathName}`));
+  return React.lazy(() => import(`@/${path}/${pathName}`));
 }

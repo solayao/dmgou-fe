@@ -26,7 +26,11 @@ export default (theme) => ({
         zIndex: theme.zIndex.drawer + 1
     },
     appFooter: {
-        height: '25px'
+        paddingTop: '10px!important',
+        fontSize: '12px!important',
+        minHeight: '25px',
+        textAlign: 'center!important',
+        background: '#F6FF9A!important',
     },
     appPCContentShift: {
         marginLeft: theme.spacing.unit * 10,
@@ -78,6 +82,9 @@ export default (theme) => ({
         },
     },
     // DrawlerList
+    listItemIcon: {
+        marginLeft: '10px',
+    },
     listItemText: {
         maxHeight: '21px',
     },

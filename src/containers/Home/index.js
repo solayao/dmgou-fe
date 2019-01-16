@@ -6,6 +6,9 @@ import BackTopModel from '@antd/BackTopModel';
 import OneDayCommend from '@proje/OneDayCommend';
 import Notice from '@proje/Notice';
 import NoticeModel from '@proje/NoticeModel';
+import BoxHeader from '@proje/BoxHeader';
+import WhatShotIcon from '@material-ui/icons/Whatshot';
+import AnchorModel from '@antd/AnchorModel';
 
 const onedayCommendQList = ['mx', 'mf', 'hg', 'qx', 'xy', 'jz', 'snv', 'snan'];
 
@@ -31,6 +34,51 @@ function HomeComponent(props) {
             </div>
 
             <BackTopModel />
+
+            <div  id="home-root">
+            <BoxHeader message="今日推荐"
+                    icon={<WhatShotIcon></WhatShotIcon>}
+                    action={<span>操作</span>}>
+                    <p id="test1">fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
+                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
+
+                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
+                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
+                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
+                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
+                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
+                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
+                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
+                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
+                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
+                    <p id="test2">fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
+                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
+                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
+                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
+                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
+                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
+                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
+
+                </BoxHeader>
+
+                <AnchorModel
+                    aList={[
+                        {href: '#test1', title: '测试哦'},
+                        {href: '#test2', title: '测试哦2'}
+                    ]}
+                    anchorProps={{
+                        onClick: (e) => {
+                            setTimeout(() => {
+                                window.scrollTo(0, document.documentElement.scrollTop - 100);
+                            }, 500)
+                            
+                        }
+                    }}
+                />
+            
+            </div>
+
+          
         </React.Fragment>
     );
 }

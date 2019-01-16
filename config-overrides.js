@@ -13,7 +13,7 @@ const {
     addDecoratorsLegacy(),
     disableEsLint(),
 
-    process.env.BUNDLE_VISUALIZE == 1 && addBundleVisualizer(),
+    // process.env.BUNDLE_VISUALIZE == 1 && addBundleVisualizer(),
 
     addWebpackAlias({
         '@': path.resolve(__dirname, 'src/'),

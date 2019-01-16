@@ -8,7 +8,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import HomeIcon from '@material-ui/icons/Home';
 import FindInPage from '@material-ui/icons/FindInPage';
 import Routes from './Routes';
-import './App.css';
+import mStyle from './App.module.scss';
 import RouteConfig from '@/main/RouteConfig';
 import styles from '@/overrides/orStyles';
 import MyHeader from '@mui//AppBarHeader';
@@ -63,14 +63,14 @@ function App(props) {
                     <isPhoneContext.Consumer>
                         {isPhone => (
                             <div className={classNames(
-                                'App',
+                                mStyle['App'],
                                 !isPhone && classes.appPCContentShift,
                             )}>
                                 <CssBaseline/>
 
                                 <MyHeader title={titleNode}
                                     orClassName={classNames(
-                                        showDrawler  && 'Dui-abh-shift',
+                                        showDrawler  && mStyle['abh-shift'],
                                         showDrawler ? classes.appBarShift : classes.appBar,
                                         !isPhone && classes.appPCHeader
                                     )}
@@ -80,7 +80,7 @@ function App(props) {
                         
                                 <DrawerModel open={showDrawler} isPhone={isPhone}
                                     orClasses={{
-                                        paper: showDrawler ? "Dui-drawer-shift"
+                                        paper: showDrawler ? mStyle["drawer-shift"]
                                             : (!isPhone && classNames(classes.appPCDrawerShift))
                                     }}
                                     variant={!isPhone ? 'permanent' : undefined}
@@ -89,8 +89,10 @@ function App(props) {
 
                                 {isPhone && <PhoneToolBar />}
 
-                                <div className="ignore">
-                                    <Routes childProps={{location, isPhone, socketio}}/>
+                                <div className={mStyle['ignore']}>
+                                    <section>
+                                        <Routes childProps={{location, isPhone, socketio}}/>
+                                    </section>
 
                                     <MyFooter orClassName={classNames(classes.appFooter)}>
                                         <p>

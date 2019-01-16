@@ -28,7 +28,7 @@ export default (theme) => ({
     appFooter: {
         paddingTop: '10px!important',
         fontSize: '12px!important',
-        minHeight: '25px',
+        height: '100px',
         textAlign: 'center!important',
         background: '#F6FF9A!important',
     },

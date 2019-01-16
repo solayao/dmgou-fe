@@ -1,22 +1,26 @@
 import React from 'react';
-import mStyles from './index.module.scss';
-import Divider from '@material-ui/core/Divider';
-import HomeComicList from '@proje/HomeComicList';
+// import mStyles from './index.module.scss';
+// import Divider from '@material-ui/core/Divider';
+// import HomeComicList from '@proje/HomeComicList';
 import BackTopModel from '@antd/BackTopModel';
-import OneDayCommend from '@proje/OneDayCommend';
-import Notice from '@proje/Notice';
-import NoticeModel from '@proje/NoticeModel';
-import BoxHeader from '@proje/BoxHeader';
-import WhatShotIcon from '@material-ui/icons/Whatshot';
-import AnchorModel from '@antd/AnchorModel';
 
-const onedayCommendQList = ['mx', 'mf', 'hg', 'qx', 'xy', 'jz', 'snv', 'snan'];
+const ModelPc  = React.lazy(() => import("./pc"));
+const ModelPhone  = React.lazy(() => import("./phone"));
+
+// import OneDayCommend from '@proje/OneDayCommend';
+// import Notice from '@proje/Notice';
+// import NoticeModel from '@proje/NoticeModel';
+
+// import AnchorModel from '@antd/AnchorModel';
+
+// const onedayCommendQList = ['mx', 'mf', 'hg', 'qx', 'xy', 'jz', 'snv', 'snan'];
 
 function HomeComponent(props) {
     const { isPhone } = props;
+    const C = isPhone ? ModelPhone : ModelPc;
     return (
         <React.Fragment>
-            <div className={mStyles["Dui-home"]}>
+            {/* <div className={mStyles["Dui-home"]}>
                 <div className={mStyles["Dui-home-left"]}>
                     <div className={mStyles["Dui-home-comic-list"]}>
                         <HomeComicList />
@@ -31,35 +35,14 @@ function HomeComponent(props) {
                         <Divider />
                     </div>
                 }
-            </div>
+            </div> */}
+            
+            <C {...props} />
 
             <BackTopModel />
 
-            <div  id="home-root">
-            <BoxHeader message="今日推荐"
-                    icon={<WhatShotIcon></WhatShotIcon>}
-                    action={<span>操作</span>}>
-                    <p id="test1">fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-
-                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                    <p id="test2">fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                    <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-
-                </BoxHeader>
+            {/* <div id="home-root">
+           
 
                 <AnchorModel
                     aList={[
@@ -76,7 +59,7 @@ function HomeComponent(props) {
                     }}
                 />
             
-            </div>
+            </div> */}
 
           
         </React.Fragment>

@@ -22,13 +22,13 @@ $topHeight: 63px;
         min-height: calc(100vh - #{$topHeight});
         background-color: #fafafa;
         &>:nth-child(1) {
-            padding-bottom: 30px;
+            padding-bottom: 100px;
         }
     }
 }
 
 // overrides
-.Dui-drawer-shift {
+.drawer-shift {
     width: $drawerWidth;
     white-space: nowrap;
 
@@ -37,7 +37,7 @@ $topHeight: 63px;
     }
 }
 
-.Dui-abh-shift {
+.abh-shift {
     width: calc(100% - #{$drawerWidth})!important;
     margin-left: $drawerWidth;
 

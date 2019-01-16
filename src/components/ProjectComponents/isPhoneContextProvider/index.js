@@ -22,7 +22,8 @@ class IsPhoneContextProvider extends React.PureComponent {
     }
 
     handleResizeWindow = () => {
-        let windowWidth = document.getElementsByClassName('App')[0].clientWidth;
+        // let windowWidth = document.getElementsByClassName('App')[0].clientWidth;
+        let windowWidth = document.getElementById('root').clientWidth;
         let currentSystem = new SystemMess();
         this.setState({
             isPhone: currentSystem.isPhone || windowWidth <= ISPHONEWIDTH,

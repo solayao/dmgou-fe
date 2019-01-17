@@ -1,5 +1,5 @@
 import React from 'react';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import {Pagination} from 'antd';
 
 const defaultPageSizeOptions = ['10', '20', '30', '40'];
@@ -37,11 +37,11 @@ function PaginationModel(props) {
 }
 
 PaginationModel.propTypes = {
-    sizeChangeFunc: Proptypes.func,
-    changeFunc: Proptypes.func,
-    current: Proptypes.number,
-    total: Proptypes.number,
-    options: Proptypes.object,
+    sizeChangeFunc: PropTypes.func,
+    changeFunc: PropTypes.func,
+    current: PropTypes.number,
+    total: PropTypes.number,
+    options: PropTypes.object,
 };
 PaginationModel.defaultProps = {
     sizeChangeFunc: (current, pageSize) => {},

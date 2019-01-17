@@ -1,5 +1,5 @@
 import React from 'react';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 
@@ -31,9 +31,9 @@ function NoWrapTypography(props) {
 }
 
 NoWrapTypography.propTypes = {
-    isPhone: Proptypes.bool,
-    typographyProps: Proptypes.object.isRequired,
-    toolTipProps: Proptypes.object,
+    isPhone: PropTypes.bool,
+    typographyProps: PropTypes.object.isRequired,
+    toolTipProps: PropTypes.object,
 };
 NoWrapTypography.defaultProps = {
     typographyProps: {

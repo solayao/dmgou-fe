@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import shortid from 'shortid';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -81,13 +81,13 @@ class DialogModel extends React.Component {
 }
 
 DialogModel.propTypes = {
-    title: Proptypes.node.isRequired,
-    content: Proptypes.node,
-    contentText: Proptypes.string,
-    actions: Proptypes.array,
-    open: Proptypes.bool.isRequired,
-    getDialogThis: Proptypes.func,
-    dialogProps: Proptypes.object
+    title: PropTypes.node.isRequired,
+    content: PropTypes.node,
+    contentText: PropTypes.string,
+    actions: PropTypes.array,
+    open: PropTypes.bool.isRequired,
+    getDialogThis: PropTypes.func,
+    dialogProps: PropTypes.object
 };
 DialogModel.defaultProps = {
     title: 'Title',

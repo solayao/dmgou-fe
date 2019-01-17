@@ -1,5 +1,5 @@
 import React from 'react';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import mStyles from '../index.module.scss';
 import shortid from 'shortid';
@@ -57,9 +57,9 @@ function RowGallery(props) {
 }
 
 RowGallery.propTypes = {
-    tileList: Proptypes.array.isRequired,
-    cols: Proptypes.number,
-    itemClick: Proptypes.func,
+    tileList: PropTypes.array.isRequired,
+    cols: PropTypes.number,
+    itemClick: PropTypes.func,
 };
 RowGallery.defaultProps = {
     tileList: [],

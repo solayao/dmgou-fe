@@ -1,5 +1,5 @@
 import React from 'react';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import mStyles from '../index.module.scss';
 import createStyled from 'material-ui-render-props-styles/index';
 
@@ -73,13 +73,13 @@ const Fragment = React.Fragment;
 }
 
 DrawerModel.propTypes = {
-    isPhone: Proptypes.bool.isRequired,
-    anchor: Proptypes.string,
-    open: Proptypes.bool.isRequired,
-    orClasses: Proptypes.object,
-    store: Proptypes.object,
-    variant: Proptypes.string,
-    handleToggleDrawer: Proptypes.func,
+    isPhone: PropTypes.bool.isRequired,
+    anchor: PropTypes.string,
+    open: PropTypes.bool.isRequired,
+    orClasses: PropTypes.object,
+    store: PropTypes.object,
+    variant: PropTypes.string,
+    handleToggleDrawer: PropTypes.func,
 };
 DrawerModel.defaultProps = {
     isPhone: true,

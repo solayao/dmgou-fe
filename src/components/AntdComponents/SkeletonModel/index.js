@@ -1,5 +1,5 @@
 import React from 'react';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Skeleton } from 'antd';
 import shortid from 'shortid';
 
@@ -18,10 +18,10 @@ function SkeletonModel(props) {
 }
 
 SkeletonModel.propTypes = {
-    loading: Proptypes.bool.isRequired,
-    avatar: Proptypes.oneOfType([Proptypes.bool, Proptypes.object]),
-    paragraph: Proptypes.oneOfType([Proptypes.bool, Proptypes.object]),
-    title: Proptypes.oneOfType([Proptypes.bool, Proptypes.object]),
+    loading: PropTypes.bool.isRequired,
+    avatar: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+    paragraph: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+    title: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
 };
 SkeletonModel.defaultProps = {
     loading: true,

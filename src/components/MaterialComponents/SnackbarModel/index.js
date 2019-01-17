@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Snackbar from '@material-ui/core/Snackbar';
 import shortid from 'shortid';
 
@@ -77,9 +77,9 @@ class SnackbarModel extends React.Component {
 }
 
 SnackbarModel.propTypes = {
-    snackbarProps: Proptypes.object,
-    action: Proptypes.node,
-    content: Proptypes.node.isRequired,
+    snackbarProps: PropTypes.object,
+    action: PropTypes.node,
+    content: PropTypes.node.isRequired,
 };
 SnackbarModel.defaultProps = {
     action: null,

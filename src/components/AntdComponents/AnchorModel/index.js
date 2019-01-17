@@ -1,5 +1,5 @@
 import React from 'react';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Anchor } from 'antd';
 import './index.css';
 
@@ -27,8 +27,8 @@ function AnchorModel (props) {
 }
 
 AnchorModel.propTypes = {
-    aList: Proptypes.array.isRequired,
-    anchorProps: Proptypes.object,
+    aList: PropTypes.array.isRequired,
+    anchorProps: PropTypes.object,
 };
 AnchorModel.defaultProps = {
     aList: [],

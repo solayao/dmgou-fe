@@ -1,5 +1,5 @@
 import React from 'react';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import './index.css';
 
 /**
@@ -56,7 +56,7 @@ class ScrollMess extends React.Component {
 }
 
 ScrollMess.propTypes = {
-    speed: Proptypes.number,    // 速度
+    speed: PropTypes.number,    // 速度
 };
 ScrollMess.defaultProps = {
     speed: 100,

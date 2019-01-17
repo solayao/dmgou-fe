@@ -1,6 +1,6 @@
 import React from 'react';
 import shortid from 'shortid';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Query from '@gql/Query';
 import {getOneDayCommend} from '@/query';
 import NoWrapTypography from '@mui/NoWrapTypography';
@@ -37,7 +37,7 @@ function OneDayCommend(props) {
 }
 
 OneDayCommend.propTypes = {
-    qList: Proptypes.array
+    qList: PropTypes.array
 };
 
 export default OneDayCommend;

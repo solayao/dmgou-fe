@@ -1,7 +1,11 @@
 import React from 'react';
 import mStyles from './index.module.scss';
-import MenuList from '@material-ui/core/MenuList';
-import MenuItem from '@material-ui/core/MenuItem';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import VerticalSplitIcon from '@material-ui/icons/VerticalSplitOutlined';
+import Fab from '@material-ui/core/Fab';
+import PopperModel from '@mui/PopperModel';
+import BackTopModel from '@antd/BackTopModel';
 
 const RandomRead = React.lazy(() => import('./part/randomRead'));
 const TodayCommend = React.lazy(() => import('./part/todayCommend'));
@@ -13,12 +17,25 @@ const menuList = [
     { key: 'rr', title: '随机看看' },
 ]
 
+const MenuNode = (handleClick) => (
+    <List>
+        {menuList.map(m => (
+            <ListItem button onClick={handleClick(m.key)}>{m.title}</ListItem>
+        ))}
+    </List>
+)
+
+function FabModel () {
+    return (
+        <Fab color="primary" aria-label="菜单">
+            <VerticalSplitIcon />
+        </Fab>
+    )
+}
+
 class HomePhone extends React.PureComponent {
-    constructor (props) {
-        super (props);
-        this.state = {
-            active: 'tu',   // tu, tc, rr
-        }
+    state = {
+        active: 'tu',   // tu, tc, rr
     }
 
     handleSelect = (key) => () => {
@@ -31,6 +48,13 @@ class HomePhone extends React.PureComponent {
         let { active } = this.state;
         return (
             <React.Fragment>
+                <PopperModel
+                    btnNode={(<FabModel />)}
+                    popNode={MenuNode(this.handleSelect)}
+                    positionTop="50"
+                    popPlacement="left"
+                />
+                <BackTopModel />
                 {active === 'tu' && <TodayUpdate />}
                 {active === 'tc' && <TodayCommend />}
                 {active === 'rr' && <RandomRead />}

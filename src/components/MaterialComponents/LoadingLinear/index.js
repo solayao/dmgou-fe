@@ -1,5 +1,5 @@
 import React from 'react';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
@@ -109,12 +109,12 @@ class LoadingLinear extends React.PureComponent {
 }
 
 LoadingLinear.propTypes ={
-    classes: Proptypes.object,
+    classes: PropTypes.object,
 
-    loadSecond: Proptypes.number,
-    loading: Proptypes.bool,
-    style: Proptypes.string,
-    mUiProps: Proptypes.object,
+    loadSecond: PropTypes.number,
+    loading: PropTypes.bool,
+    style: PropTypes.string,
+    mUiProps: PropTypes.object,
 };
 LoadingLinear.defaultProps = {
     loadSecond: 60,

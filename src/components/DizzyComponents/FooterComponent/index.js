@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import styles from './index.module.css';
 
 const year = new Date().getFullYear();
@@ -23,7 +23,7 @@ function FooterComponent(props) {
 }
 
 FooterComponent.propTypes = {
-    orClassName: Proptypes.string,
+    orClassName: PropTypes.string,
 };
 FooterComponent.defaultProps = {};
 

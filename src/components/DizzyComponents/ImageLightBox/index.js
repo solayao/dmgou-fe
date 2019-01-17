@@ -1,5 +1,5 @@
 import React from 'react';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
 
@@ -85,11 +85,11 @@ class ImageActionModel extends React.PureComponent {
 }
 
 ImageActionModel.propTypes = {
-    createActionFunc: Proptypes.func.isRequired,
-    currentIndex: Proptypes.number.isRequired,
-    imageList: Proptypes.array.isRequired,
-    srcFormat: Proptypes.string,
-    canPrevOrNext: Proptypes.bool,
+    createActionFunc: PropTypes.func.isRequired,
+    currentIndex: PropTypes.number.isRequired,
+    imageList: PropTypes.array.isRequired,
+    srcFormat: PropTypes.string,
+    canPrevOrNext: PropTypes.bool,
 };
 ImageActionModel.defaultProps = {
     createActionFunc: (showFunc) => { return null; },

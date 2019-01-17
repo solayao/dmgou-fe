@@ -1,6 +1,6 @@
 import React from 'react';
 import BScroll from 'better-scroll';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import './index.css';
 
 class ScrollModel extends React.Component {
@@ -108,11 +108,11 @@ class ScrollModel extends React.Component {
 };
 
 ScrollModel.propTypes = {
-    pullUpFunc: Proptypes.func,
-    pullDownFunc: Proptypes.func,
-    onRef: Proptypes.func,
-    height: Proptypes.number.isRequired,
-    updateScrollToTop: Proptypes.bool,
+    pullUpFunc: PropTypes.func,
+    pullDownFunc: PropTypes.func,
+    onRef: PropTypes.func,
+    height: PropTypes.number.isRequired,
+    updateScrollToTop: PropTypes.bool,
 };
 ScrollModel.defaultProps = {
     height: 500,

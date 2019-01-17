@@ -1,5 +1,5 @@
 import React from 'react';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import shortid from 'shortid';
 import {Link} from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
@@ -76,13 +76,13 @@ function ComicCard (props){
 };
 
 ComicCard.propTypes = {
-    id: Proptypes.string,
-    name: Proptypes.string,
-    icon: Proptypes.string,
-    last: Proptypes.string,
-    lastUpdate: Proptypes.string,
-    author: Proptypes.string,
-    state: Proptypes.string,
+    id: PropTypes.string,
+    name: PropTypes.string,
+    icon: PropTypes.string,
+    last: PropTypes.string,
+    lastUpdate: PropTypes.string,
+    author: PropTypes.string,
+    state: PropTypes.string,
 };
 
 export default ComicCard;

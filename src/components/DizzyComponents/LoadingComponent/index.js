@@ -1,5 +1,5 @@
 import React from 'react';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import './style.css';
 
 /**
@@ -51,8 +51,8 @@ function LoadingComponent (props) {
 }
 
 LoadingComponent.propTypes = {
-    moduleType: Proptypes.string,
-    nullDivNum: Proptypes.number,
+    moduleType: PropTypes.string,
+    nullDivNum: PropTypes.number,
 };
 LoadingComponent.defaultProps = {
     moduleType: 'ball-beat',

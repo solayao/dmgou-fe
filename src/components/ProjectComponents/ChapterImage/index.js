@@ -1,5 +1,5 @@
 import React from 'react';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import mStyles from './index.module.scss';
 import IconButton from '@material-ui/core/IconButton';
@@ -123,9 +123,9 @@ class ChapterImage extends React.Component {
 }
 
 ChapterImage.propTypes = {
-    imgUrlList: Proptypes.array.isRequired,
-    showImgNo: Proptypes.number,
-    changePageNum: Proptypes.func,
+    imgUrlList: PropTypes.array.isRequired,
+    showImgNo: PropTypes.number,
+    changePageNum: PropTypes.func,
 };
 ChapterImage.defaultProps = {
     imgUrlList: [],

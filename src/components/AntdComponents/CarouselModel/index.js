@@ -1,5 +1,5 @@
 import React from 'react';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Carousel } from 'antd';
 import './index.css';
 
@@ -30,7 +30,7 @@ function CarouselModel (props) {
 }
 
 CarouselModel.propTypes = {
-    config: Proptypes.object.isRequired,
+    config: PropTypes.object.isRequired,
 };
 CarouselModel.defaultProps = {
     config: {},

@@ -1,5 +1,5 @@
 import React from 'react';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
@@ -40,12 +40,12 @@ function AppBarHeader (props) {
 }
 
 AppBarHeader.propTypes = {
-    title: Proptypes.node.isRequired,
-    orClassName: Proptypes.string, 
-    clickMenuIconFunc: Proptypes.func,
-    otherNode: Proptypes.oneOfType([
-        Proptypes.node,
-        Proptypes.object,
+    title: PropTypes.node.isRequired,
+    orClassName: PropTypes.string, 
+    clickMenuIconFunc: PropTypes.func,
+    otherNode: PropTypes.oneOfType([
+        PropTypes.node,
+        PropTypes.object,
     ])
 };
 AppBarHeader.defaultProps = {

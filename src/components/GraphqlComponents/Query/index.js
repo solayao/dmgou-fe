@@ -1,5 +1,5 @@
 import React from 'react';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import {Query} from "react-apollo";
 import { getPrototypeType } from 'dizzyl-util/lib/type';
 import LoadingLiner from '../../MaterialComponents/LoadingLinear';
@@ -48,9 +48,9 @@ function QueryModel(props) {
 }
 
 QueryModel.propTypes = {
-    loadingType: Proptypes.string,
-    loadingProps: Proptypes.object,
-    loadingRender: Proptypes.node
+    loadingType: PropTypes.string,
+    loadingProps: PropTypes.object,
+    loadingRender: PropTypes.node
 }
 QueryModel.defaultProps = {
     loadingType: 'circular',

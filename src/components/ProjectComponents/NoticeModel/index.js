@@ -1,5 +1,5 @@
 import React from 'react';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import ExpansionCard from '@mui/ExpansionCard';
 import mStyles from './index.module.scss';
@@ -27,7 +27,7 @@ function NoticeModel(props) {
 }
 
 NoticeModel.propTypes = {
-    title: Proptypes.string.isRequired
+    title: PropTypes.string.isRequired
 };
 NoticeModel.defaultProps = {
     title: '标题'

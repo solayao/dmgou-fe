@@ -1,7 +1,7 @@
 import React from 'react';
 import lozad from 'lozad';
 import shortid from 'shortid';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import ErrorImg from './error.png';
 import './index.css';
@@ -87,12 +87,12 @@ class LozadWrapper extends React.Component {
 }
 
 LozadWrapper.propTypes = {
-    src: Proptypes.string.isRequired,
-    srcset: Proptypes.string,
-    alt: Proptypes.string.isRequired,
-    classes: Proptypes.oneOfType([Proptypes.string, Proptypes.array]),
-    style: Proptypes.oneOfType([Proptypes.string, Proptypes.object]),
-    imgErrCB: Proptypes.func,
+    src: PropTypes.string.isRequired,
+    srcset: PropTypes.string,
+    alt: PropTypes.string.isRequired,
+    classes: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+    style: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    imgErrCB: PropTypes.func,
 }
 LozadWrapper.defaultProps = {};
 

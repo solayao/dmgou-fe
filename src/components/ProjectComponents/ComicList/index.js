@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import shortid from 'shortid';
 import {Link} from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
@@ -73,9 +73,9 @@ function ComicList(props) {
 }
 
 ComicList.propTypes = {
-    comicDataList: Proptypes.array.isRequired,
-    isPhone: Proptypes.bool,
-    socketio: Proptypes.object,
+    comicDataList: PropTypes.array.isRequired,
+    isPhone: PropTypes.bool,
+    socketio: PropTypes.object,
 };
 ComicList.defaultProps = {
     comicDataList: [],

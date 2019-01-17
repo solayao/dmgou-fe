@@ -1,5 +1,5 @@
 import React from 'react';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -22,9 +22,9 @@ function LoadingCircular(props) {
 }
 
 LoadingCircular.propTypes = {
-    classes: Proptypes.object,
-    mUiProps: Proptypes.object,
-    loading: Proptypes.bool,
+    classes: PropTypes.object,
+    mUiProps: PropTypes.object,
+    loading: PropTypes.bool,
 };
 LoadingCircular.defaultProps = {
     loading: true,

@@ -19,6 +19,7 @@ import SearchInput from '@proje/SearchInput';
 import PhoneToolBar from '@proje/PhoneToolBar';
 import {isPhoneContext} from '@/store/context';
 import IsPhoneContextProvider from '@proje/IsPhoneContextProvider';
+import PhoneFooter from '@proje/PhoneFooter';
 
 const Fragment = React.Fragment;
 const Styled = createStyled(styles, {withTheme: true});
@@ -88,14 +89,18 @@ function App(props) {
                                         <Routes childProps={{location, isPhone}}/>
                                     </section>
 
-                                    <MyFooter orClassName={classNames(classes.appFooter)}>
-                                        <p>
-                                        免责声明            |                隐私政策                      |               联系我们
-                                        </p>
-                                        <p>
-                                            本站漫画等相关内容均来自互联网，以供漫画爱好者研究漫画画法技巧和构图方式，若侵犯到您的权益，请立即联系我们删除。本站不负任何相关责任。
-                                        </p>
-                                    </MyFooter>
+                                    {!isPhone && (
+                                        <MyFooter orClassName={classNames(classes.appFooter)}>
+                                            <p>
+                                            免责声明            |                隐私政策                      |               联系我们
+                                            </p>
+                                            <p>
+                                                本站漫画等相关内容均来自互联网，以供漫画爱好者研究漫画画法技巧和构图方式，若侵犯到您的权益，请立即联系我们删除。本站不负任何相关责任。
+                                            </p>
+                                        </MyFooter>
+                                    )}
+
+                                    {isPhone && <PhoneFooter />}
                                 </div>
                                 
                             </div>

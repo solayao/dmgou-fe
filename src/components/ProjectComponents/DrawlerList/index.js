@@ -1,5 +1,5 @@
 import React from 'react';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import shortid from 'shortid';
 import {NavLink} from 'react-router-dom';
 import {inject, observer} from 'mobx-react';
@@ -54,8 +54,8 @@ function DrawlerList(props) {
 }
 
 DrawlerList.propTypes = {
-    activePath: Proptypes.string.isRequired,
-    contentList: Proptypes.array.isRequired,
+    activePath: PropTypes.string.isRequired,
+    contentList: PropTypes.array.isRequired,
 };
 DrawlerList.defaultProps ={
     activePath: '/',

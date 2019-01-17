@@ -1,5 +1,5 @@
 import React from 'react';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
@@ -95,19 +95,19 @@ class IconTabs extends React.Component {
 }
 
 IconTabs.propTypes = {
-    tabList: Proptypes.arrayOf(Proptypes.shape({
-        label: Proptypes.string.isRequired,
-        value: Proptypes.any.isRequired,
-        icon: Proptypes.node,
-        disabled: Proptypes.boolean,
-        badgeContent: Proptypes.number,
+    tabList: PropTypes.arrayOf(PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        value: PropTypes.any.isRequired,
+        icon: PropTypes.node,
+        disabled: PropTypes.boolean,
+        badgeContent: PropTypes.number,
     })),
-    defaultTab: Proptypes.oneOfType([
-        Proptypes.string,
-        Proptypes.number,
+    defaultTab: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
     ]),
-    tabClasses: Proptypes.object,
-    afterChangeTag: Proptypes.func,
+    tabClasses: PropTypes.object,
+    afterChangeTag: PropTypes.func,
 };
 IconTabs.defaultProps = {
     tabList: [],        // 模块列表

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import styles from './index.module.css';
 import logo from './logo.svg';
 
@@ -26,8 +26,8 @@ class HeaderComponent extends Component {
 }
 
 HeaderComponent.propTypes = {
-    logoClass: Proptypes.string,
-    logoAlt: Proptypes.string,
+    logoClass: PropTypes.string,
+    logoAlt: PropTypes.string,
 }
 HeaderComponent.defaultProps = {
     logoClass: 'App-logo',

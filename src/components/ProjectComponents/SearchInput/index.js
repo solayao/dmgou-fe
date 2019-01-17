@@ -2,7 +2,7 @@ import React from 'react';
 import {withRouter} from 'react-router';
 import {inject} from 'mobx-react';
 import classNames from 'classnames';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import InputBase from '@material-ui/core/InputBase';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -130,9 +130,9 @@ class SearchInput extends React.Component {
 }
 
 SearchInput.propTypes = {
-    inputProps: Proptypes.object.isRequired,
-    historyClasses: Proptypes.string,
-    handleAfterSearch: Proptypes.func,
+    inputProps: PropTypes.object.isRequired,
+    historyClasses: PropTypes.string,
+    handleAfterSearch: PropTypes.func,
 };
 SearchInput.defaultProps = {};
 

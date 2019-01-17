@@ -1,5 +1,5 @@
 import React from 'react';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import shortid from 'shortid';
 import ComicCard from '../ComicCard';
 import mStyle from './index.module.scss';
@@ -45,9 +45,9 @@ function BoxList(props) {
 }
 
 BoxList.propTypes = {
-    dataArr: Proptypes.array,
-    maxNum: Proptypes.number,
-    isPhone: Proptypes.bool,
+    dataArr: PropTypes.array,
+    maxNum: PropTypes.number,
+    isPhone: PropTypes.bool,
 }
 
 export default BoxList;

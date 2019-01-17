@@ -1,38 +1,31 @@
 import React from "react";
+import AnchorModel from '@antd/AnchorModel';
 import mStyles from './index.module.scss';
-import BoxHeader from '@proje/BoxHeader';
-import WhatShotIcon from '@material-ui/icons/Whatshot';
+import RandomRead from './part/randomRead';
+import TodayCommend from './part/todayCommend';
+import TodayUpdate from './part/todayUpdate';
 
-const onedayCommendQList = ['mx', 'mf', 'hg', 'qx', 'xy', 'jz', 'snv', 'snan'];
+const anchorList = [
+    { href: '#tu', title: '今日更新' },
+    { href: '#tc', title: '今日推荐' },
+    { href: '#rr', title: '随机看看' },
+]
 
 function HomePc (props) {
-
     return (
-        <div>
-            <BoxHeader message="今日推荐"
-                icon={<WhatShotIcon></WhatShotIcon>}
-                action={<span>操作</span>}>
-                <p id="test1">fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
+        <div className={mStyles['pc-root']}>
+            <div id="tu" className={mStyles['pc-anchor-link']}></div>
+            <TodayUpdate />
+            <br />
+            <div id="tc" className={mStyles['pc-anchor-link']}></div>
+            <TodayCommend />
+            <br />
+            <div id="rr" className={mStyles['pc-anchor-link']}></div>
+            <RandomRead />
 
-                <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                <p id="test2">fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-                <p>fdsfhdsklfjasklfjdsklfjsdklfjdskfjdskjfkdslfjkdsljfdskljflksjfkdsljfkdsljfakdsljfkldsjfkldsjflksdjfklasjfkldsjfkldsjfkldsjfkldsjfkldsjfkldsjkfljdsklfjsdklfj</p>
-
-            </BoxHeader>
+            <div className={mStyles['pc-anchor']}>
+                <AnchorModel aList={anchorList} />
+            </div>
         </div>
     )
 }

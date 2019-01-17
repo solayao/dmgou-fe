@@ -23,7 +23,7 @@ function FooterComponent(props) {
 }
 
 FooterComponent.propTypes = {
-    orClassName: Proptypes.String,
+    orClassName: Proptypes.string,
 };
 FooterComponent.defaultProps = {};
 

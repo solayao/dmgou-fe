@@ -1,3 +1,17 @@
-.ant-carousel .slick-slide {
-  text-align: center;
-  overflow: hidden; }
+.ant-carousel .slick-dots {
+    position: static;
+    height: auto;
+} 
+
+.ant-carousel .slick-vertical .slick-dots {
+    position: absolute;
+    right: 0px;
+}
+
+.ant-carousel .slick-dots li button {
+    background: black!important;
+    width: 15px!important;
+    height: 15px!important;
+    border-radius: 50%;
+    margin: 5px;
+}

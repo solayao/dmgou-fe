@@ -1,38 +1,48 @@
 import React from 'react';
 import Proptypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
-import MediaCard from '@mui/MediaCard';
 import shortid from 'shortid';
+import {Link} from 'react-router-dom';
+import Typography from '@material-ui/core/Typography';
+import Tooltip from '@material-ui/core/Tooltip';
+import MediaCard from '@mui/MediaCard';
+import {isPhoneContext, socketContext} from '@/store/context';
 
 const Fragment = React.Fragment;
 
-function handleErrorCB = (socket, id) => () => {
+const handleErrorCB = (socket, id) => () => {
     if (!!id && !!socket) 
         socket.emit('fe-crawelr-latest', id);
 }
 
 function ComicCard (props){
-    const {socketio, id, name, icon, author, last, lastUpdate, state, type, isPhone} = props;
+    let {id, name, icon, author, last, lastUpdate, state, type} = props;
 
     let linkProps = {
         pathname: '/detail',
         search: `cn=${encodeURIComponent(name)}`
     };
+
     let cardHeader = {
         title: (
-            <Tooltip title={name} placement="bottom">
-                <Typography component="p" variant="h6" noWrap={!isPhone}>
-                    {name}
-                </Typography>
-            </Tooltip>
+            <isPhoneContext.Consumer>
+                {isPhone => (
+                    <Tooltip title={name} placement="bottom">
+                        <Typography component="p" variant="subtitle1" noWrap={isPhone}>
+                            {name.length > 10 ? `${name.slice(0, 10)}...` : name}
+                        </Typography>
+                    </Tooltip>
+                )}
+            </isPhoneContext.Consumer>
         )
     };
-    let cardMedia = {
+
+    let cardMedia = (socketio) => ({
         image: icon,
         srcset: icon,
         title: name,
         imgErrCB: handleErrorCB(socketio, id)
-    };
+    });
+
     let cardContent = {
         children: (
             <Fragment>
@@ -42,26 +52,30 @@ function ComicCard (props){
             </Fragment>
         )
     };
-    let cardActions = {
+
+    let cardActions = state && type ? {
         children: ( 
             <Fragment>
                 {state && type && <Typography component="p">{state} {type}</Typography>}
             </Fragment>
         )
-    }
+    } : null;
+
     return (
-        <Link to={linkProps}>
-            <MediaCard layout="img-left"
-                header={cardHeader} media={cardMedia}
-                actions={cardActions} content={cardContent} />
+        <Link to={linkProps} key={shortid.generate()}>
+            <socketContext.Consumer>
+                {socket => (
+                    <MediaCard layout="img-left"
+                        header={cardHeader} media={cardMedia(socket)}
+                        actions={cardActions} content={cardContent} />
+                )}
+            </socketContext.Consumer>
+            
         </Link>
-    )
+    );
 };
 
 ComicCard.propTypes = {
-    socketio: Proptypes.object,
-    isPhone: Proptypes.bool,
-
     id: Proptypes.string,
     name: Proptypes.string,
     icon: Proptypes.string,

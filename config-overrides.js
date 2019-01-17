@@ -5,9 +5,11 @@ const {
     disableEsLint,
     addBundleVisualizer,
     addWebpackAlias,
-    addPostcssPlugins
+    addPostcssPlugins,
+    addLessLoader 
   } = require("customize-cra");
   const path = require("path");
+  const orAntdStyle = require("./src/overrides/orAntd");
   
   module.exports = override(
     addDecoratorsLegacy(),
@@ -25,7 +27,11 @@ const {
         '@proje': path.resolve(__dirname, 'src/components/ProjectComponents')
     }),
 
-    fixBabelImports('antd', { libraryName: 'antd', libraryDirectory: 'es', style: 'css' }),
+    fixBabelImports('antd', { libraryName: 'antd', libraryDirectory: 'es', style: true }),
+    addLessLoader({
+        modifyVars: orAntdStyle,
+        javascriptEnabled: true,
+    }),
 
     addPostcssPlugins([
         require('postcss-px-to-viewport')({

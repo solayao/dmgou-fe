@@ -1,28 +1,25 @@
-$gap: 10px;
-$rightWidth: 300px;
-$borderStyle: 1px solid #e1e4e8;
-
-.Dui-home {
-    display: flex;
-    justify-content: space-between;
+// pc
+.pc-root {
+    padding: 10px 8vw 10px 2vw;
 }
-.Dui-home-left {
-    flex: 1;
-    padding: 0 $gap $gap;;
-    border-right: $borderStyle;
-    border-bottom: $borderStyle;
-}
-.Dui-home-right {
-    width: $rightWidth;
-    padding: 0 $gap $gap;;
-    margin-top: $gap;
-    border-bottom: $borderStyle;
 
-    & .MuiDivider-root {
-        margin-top: $gap;
-        margin-left: -$gap;
+.pc-anchor {
+    position: fixed;
+    top: 10vh;
+    right: 2vw;
+}
+
+.pc-anchor-link {
+    position: relative;
+    bottom: 100px;
+    height: 1px;
+    border: none;
+}
+
+// randomRead
+.refush {
+    font-size: 16px;
+    &:hover{
+        cursor: pointer;
     }
-}
-.Dui-home-comic-list {
-    margin-top: $gap;
 }

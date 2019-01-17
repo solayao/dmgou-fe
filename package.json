@@ -13,7 +13,6 @@
     "dizzyl-util": "^2.5.3",
     "graphql": "^14.1.0",
     "graphql-tag": "^2.10.0",
-    "http-proxy-middleware": "^0.19.1",
     "jss": "^9.8.7",
     "lozad": "^1.7.0",
     "material-ui-render-props-styles": "^4.0.4",
@@ -35,6 +34,9 @@
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.2.3",
     "customize-cra": "^0.2.9",
+    "http-proxy-middleware": "^0.19.1",
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0",
     "postcss-px-to-viewport": "^0.0.3",
     "react-app-rewired": "^2.0.2",
     "webpack-bundle-analyzer": "^3.0.3",

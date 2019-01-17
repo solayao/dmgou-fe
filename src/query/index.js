@@ -86,6 +86,7 @@ export const getOneDayCommend = gql`
             name
             type
             state
+            last
             description
         }
     }

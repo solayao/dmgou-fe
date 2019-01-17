@@ -18,8 +18,7 @@ import DrawerList from '@proje/DrawlerList';
 import SearchInput from '@proje/SearchInput';
 import PhoneToolBar from '@proje/PhoneToolBar';
 import {isPhoneContext} from '@/store/context';
-import IsPhoneContextProvider from '@proje/isPhoneContextProvider';
-import createSocket from '@/query/socket';
+import IsPhoneContextProvider from '@proje/IsPhoneContextProvider';
 
 const Fragment = React.Fragment;
 const Styled = createStyled(styles, {withTheme: true});
@@ -44,11 +43,6 @@ const headerOther = (classes, isPhone) => (
         </div>
     ) : null
 );
-const socketio = createSocket();
-
-window.addEventListener("beforeunload", function(event) {
-    socketio.close();
-});
 
 /**
  * @class App
@@ -91,7 +85,7 @@ function App(props) {
 
                                 <div className={mStyle['ignore']}>
                                     <section>
-                                        <Routes childProps={{location, isPhone, socketio}}/>
+                                        <Routes childProps={{location, isPhone}}/>
                                     </section>
 
                                     <MyFooter orClassName={classNames(classes.appFooter)}>

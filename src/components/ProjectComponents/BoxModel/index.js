@@ -2,9 +2,11 @@ import React from 'react';
 import Proptypes from 'prop-types';
 import classNames from 'classnames';
 import mStyles from './index.module.scss';
+import BoxList from '@proje/BoxList';
+import {isPhoneContext} from '@/store/context';
 
-function BoxHeader (props) {
-    const {icon, message, action, children} = props;
+function BoxModel (props) {
+    const {icon, message, action, data, maxNum} = props;
 
     return (
         <section className={classNames(mStyles['root'])}>
@@ -16,17 +18,26 @@ function BoxHeader (props) {
                 </div>
             </div>
             <div className={classNames(mStyles['body'])}>
-                {children}
+                <isPhoneContext.Consumer>
+                    {isPhone => (
+                        <BoxList dataArr={data} maxNum={maxNum} isPhone={isPhone} />
+                    )}
+                </isPhoneContext.Consumer>
             </div>
         </section>
     )
 }
 
-BoxHeader.propTypes = {
+BoxModel.propTypes = {
     icon: Proptypes.node.isRequired,
     message: Proptypes.string.isRequired,
     action: Proptypes.node,
+    data: Proptypes.array.isRequired,
+    maxNum: Proptypes.number,
 };
-BoxHeader.defaultProps = {};
+BoxModel.defaultProps = {
+    data: [],
+    maxNum: 4
+};
 
-export default BoxHeader;
+export default BoxModel;

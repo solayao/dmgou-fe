@@ -41,6 +41,7 @@ export default (theme) => ({
     },
     search: {
         position: 'absolute',
+        border: '1px solid white',
         borderRadius: theme.shape.borderRadius,
         backgroundColor: fade(theme.palette.common.white, 0.15),
         '&:hover': {

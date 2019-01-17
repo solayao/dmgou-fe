@@ -1,6 +1,7 @@
 import React from 'react';
 import Proptypes from 'prop-types';
 import { Anchor } from 'antd';
+import './index.css';
 
 const { Link } = Anchor;
 
@@ -12,7 +13,8 @@ const { Link } = Anchor;
  * @returns
  */
 function AnchorModel (props) {
-    const { aList, anchorProps } = props;
+    let { aList, anchorProps } = props;
+
     return (
         <Anchor {...anchorProps}>
             {
@@ -30,7 +32,7 @@ AnchorModel.propTypes = {
 };
 AnchorModel.defaultProps = {
     aList: [],
-    anchorProps: {}
+    anchorProps: {},
 }
 
 export default AnchorModel;

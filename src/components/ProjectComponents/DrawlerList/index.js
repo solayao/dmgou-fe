@@ -10,6 +10,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import StarRounded from '@material-ui/icons/StarRounded';
 import Divider from '@material-ui/core/Divider';
 import Tooltip from '@material-ui/core/Tooltip';
+import './index.css';
 
 import createStyled from 'material-ui-render-props-styles/index';
 import styles from '@/overrides/orStyles';

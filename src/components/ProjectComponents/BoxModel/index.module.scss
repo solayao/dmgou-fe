@@ -1,8 +1,6 @@
 @import '../../../style/variable.scss';
 
-.root {
-    overflow: hidden;
-}
+.root {}
 
 .head {
     display: flex;
@@ -11,7 +9,7 @@
 
 .icon {
     svg {
-        font-size: 38px;
+        font-size: 40px;
     }
 }
 
@@ -24,7 +22,8 @@
 }
 
 .message {
-    font-size: 36px;
+    font-size: 34px;
+    color: #999999;
 }
 
 .action {

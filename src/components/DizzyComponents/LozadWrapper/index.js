@@ -47,19 +47,24 @@ class LozadWrapper extends React.Component {
 
     handleError = (e) => {
         const {src, srcset, imgErrCB} = this.props, {retry} = this.state;
-        if (!retry) {
-            this.img.current.setAttribute('src', src);
-            this.img.current.setAttribute('srcset', srcset);
-            this.img.current.addEventListener('error', this.handleError);
-            this.setState({
-                retry: true
-            })
-        } else {
-            this.img.current.setAttribute('src', ErrorImg);
-            this.img.current.setAttribute('srcset', ErrorImg);
-            if (imgErrCB) {
-                imgErrCB()
+        if (!!this.img && !!this.img.current) {
+            if (!retry) {
+                this.img.current.setAttribute('src', src);
+                this.img.current.setAttribute('srcset', srcset);
+                this.img.current.addEventListener('error', this.handleError);
+                this.setState({
+                    retry: true
+                })
+            } else {
+    
+                this.img.current.setAttribute('src', ErrorImg);
+                this.img.current.setAttribute('srcset', ErrorImg);
+                if (imgErrCB) {
+                    imgErrCB()
+                }
             }
+        } else {
+            console.error('获取image实例失败');
         }
     }
 

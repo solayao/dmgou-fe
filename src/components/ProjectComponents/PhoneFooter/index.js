@@ -23,7 +23,7 @@ function PhoneFooter (props) {
         <PopperModel 
             btnNode={(<FabModel />)}
             popNode={(<MessageModel />)}
-            positionTop="90"
+            positionTop={90}
             autoClose={true}
             popPlacement="top-end"
         />

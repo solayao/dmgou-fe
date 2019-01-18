@@ -52,7 +52,7 @@ class HomePhone extends React.PureComponent {
                     btnNode={(<FabModel />)}
                     popNode={MenuNode(this.handleSelect)}
                     positionTop="50"
-                    popPlacement="left"
+                    popPlacement="right"
                 />
                 <BackTopModel />
                 {active === 'tu' && <TodayUpdate />}

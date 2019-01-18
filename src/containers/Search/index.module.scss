@@ -1,54 +1,21 @@
+@import '../../style/variable.scss';
 
-.Dui-search-box {
-    position: relative;
+.search-list{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
 
-    .Dui-searchType {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 200px;
-        border: 1px solid #DCDCDC;
-        padding: 10px;
-    }
-
-    .Dui-search-list {
-        margin-left: 210px;
-        margin-bottom: 10px;
-        flex: 1;
-    }
-    .Dui-search-list-phone {
-        margin-left: 0!important;
+    @media screen and ($discern_key: $discern_value) {
+        display: flex;
+        flex-direction: column;
+        & > * {
+            margin-top: 20px;
+        }
     }
 }
 
-
-.Dui-search-divider {
-    margin: 10px 0;
+.search-pagination {
+    margin: 10px auto;
 }
-
-.Dui-search-row {
-    font-size: 12px;
-    line-height: 20px;
-    color: #999;
-    text-align: left;
-    & > :first-child {
-        font-size: 14px;
-        padding: 5px 0;
-    }
-}
-
-.Dui-search-items {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.Dui-search-typeItem {
-    padding: 0 5px;
-    cursor: pointer;
-}
-
-.Dui-search-activeItem {
-    border: 1px solid #2196f3;
-    color: #2196f3;
-}
-

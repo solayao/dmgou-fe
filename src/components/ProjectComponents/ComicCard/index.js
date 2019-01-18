@@ -27,7 +27,7 @@ function ComicCard (props){
             <isPhoneContext.Consumer>
                 {isPhone => (
                     <Tooltip title={name} placement="bottom">
-                        <Typography component="p" variant="subtitle1" noWrap={isPhone}>
+                        <Typography component="p" variant="subtitle2" noWrap={isPhone}>
                             {name.length > 10 ? `${name.slice(0, 10)}...` : name}
                         </Typography>
                     </Tooltip>

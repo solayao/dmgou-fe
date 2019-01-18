@@ -24,7 +24,7 @@ class ScrollModel extends React.Component {
     }
 
     componentWillUnmount() {
-        this.scroll = this.wrapperRefs = null;
+        this.wrapperRefs = null;
     }
 
     initScroll = () => {

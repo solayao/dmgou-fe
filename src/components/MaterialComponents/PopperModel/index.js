@@ -52,8 +52,7 @@ class PopperModel extends React.PureComponent {
                     style={{ top: `${positionTop}vh`}}>
                     {btnNode}
                 </div>
-                <Popper open={open} anchorEl={anchorEl} transition
-                    disablePortal={false} placement={popPlacement}>
+                <Popper open={open} anchorEl={anchorEl} transition placement={popPlacement}>
                     {({ TransitionProps }) => (
                         <Fade {...TransitionProps}>
                             <Paper>
@@ -81,7 +80,7 @@ PopperModel.defaultProps = {
     autoClose: true,
     autoCloseTime: 10,
     popPlacement: 'bottom',
-    positionTop: '90',
+    positionTop: 90,
 };
 
 export default PopperModel;

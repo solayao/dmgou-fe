@@ -1,0 +1,30 @@
+@import '../../../style/variable.scss';
+
+.head {
+    display: flex;
+    align-items: flex-end;
+    flex: 1;
+}
+
+.icon {
+    svg {
+        font-size: 40px;
+    }
+}
+
+.ma {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 3px dashed #666666; 
+}
+
+.message {
+    font-size: 34px;
+    color: #999999;
+}
+
+.action {
+    font-size: 24px;
+}

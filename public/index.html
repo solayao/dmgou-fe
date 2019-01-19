@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
@@ -23,12 +24,19 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>DMGOU(动漫狗)_dmgou - 这里是兴趣使然的无名漫画小站</title>
-  </head>
-  <body>
+    <script>
+        window.onerror = function(msg, url, line) {
+          alert('浏览器渲染页面时出错了, 尝试升级到最新版浏览器, 或者使用最新版Chrome浏览~~');
+          return msg+'\n'+url+'\n'+line;
+        };
+    </script>
+</head>
+
+<body>
     <noscript>
-          !!!建议使用最新版本的Chrome浏览器!!!
-      由于本网站使用React技术栈，请不要在本网站禁止JS运行。
-      (You need to enable JavaScript to run this app.)
+        !!!建议使用最新版本的Chrome浏览器!!!
+        由于本网站使用React技术栈，请不要在本网站禁止JS运行。
+        (You need to enable JavaScript to run this app.)
     </noscript>
     <div id="root"></div>
     <!--
@@ -41,6 +49,7 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-  </body>
-  <script type="text/javascript" src="%PUBLIC_URL%/baiduPush.js"></script>
+</body>
+<script type="text/javascript" src="%PUBLIC_URL%/baiduPush.js"></script>
+
 </html>

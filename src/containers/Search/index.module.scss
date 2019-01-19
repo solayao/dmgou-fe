@@ -19,3 +19,45 @@
 .search-pagination {
     margin: 10px auto;
 }
+
+.tool-box-root {
+    display: block;
+    width: 20vw;
+    position: absolute;
+    top: 2vh;
+    right: 10px;
+
+    @media screen and ($discern_key: $discern_value) { 
+        position: initial;
+        padding-top: 2vh;
+        width: 90vw;
+        margin: 0 auto;
+    }
+}
+
+.tool-box {}
+
+.tool-box-btns {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1vh;
+
+    & > :not(:first-child) {
+        margin: 0 1vw;
+    }
+}
+
+.tool-group {
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+.h-icon {
+    svg {
+        font-size: 20px;
+    }
+}
+
+.h-action {
+    font-size: 16px;
+}

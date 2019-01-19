@@ -24,7 +24,7 @@ class ScrollModel extends React.Component {
     }
 
     componentWillUnmount() {
-        this.wrapperRefs = null;
+        this.wrapperRefs = this.scrollEnd = null;
     }
 
     initScroll = () => {
@@ -55,7 +55,8 @@ class ScrollModel extends React.Component {
             .then((newData) => {
                 // 在刷新数据完成之后，调用 finishPullUp 方法
                 this.scroll.finishPullUp();
-                this.refresh();
+
+                if (this.props.refreshAfterPullFunc) this.refresh();
             });
         });
     }
@@ -70,7 +71,7 @@ class ScrollModel extends React.Component {
                 // console.log(newData)
                 // 在刷新数据完成之后，调用 finishPullDown 方法
                 this.scroll.finishPullDown();
-                this.refresh();
+                if (this.props.refreshAfterPullFunc) this.refresh();
             });
         });
     }
@@ -113,10 +114,12 @@ ScrollModel.propTypes = {
     onRef: PropTypes.func,
     height: PropTypes.number.isRequired,
     updateScrollToTop: PropTypes.bool,
+    refreshAfterPullFunc: PropTypes.bool,
 };
 ScrollModel.defaultProps = {
     height: 500,
     updateScrollToTop: false,
+    refreshAfterPullFunc: true
 };
 
 export default ScrollModel;

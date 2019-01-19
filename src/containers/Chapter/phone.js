@@ -43,7 +43,7 @@ class ChapterPhone extends React.Component {
     }
 
     componentWillMount () {
-        this.boxWidth = document.getElementsByClassName('ignore')[0].clientWidth - 10;
+        this.boxWidth = document.getElementById('root').clientWidth - 10;
         this.props.setToolbarsForPhone([
             <p onClick={this.handlePullDown}><ExposureNeg1Icon /></p>,
             <p onClick={this.handlePullUp}><ExposurePlus1Icon /></p>,

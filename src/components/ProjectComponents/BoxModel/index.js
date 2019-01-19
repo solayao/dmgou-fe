@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import mStyles from './index.module.scss';
 import BoxList from '@proje/BoxList';
+import BoxHeader from '@proje/BoxHeader';
 import {isPhoneContext} from '@/store/context';
 
 function BoxModel (props) {
@@ -10,13 +11,8 @@ function BoxModel (props) {
 
     return (
         <section className={classNames(mStyles['root'])}>
-            <div className={classNames(mStyles['head'])}>
-                <span className={classNames(mStyles['icon'])}>{icon}</span>
-                <div className={classNames(mStyles['ma'])}>
-                    <span className={classNames(mStyles['message'])}>{message}</span>
-                    <div className={classNames(mStyles['action'])}>{action}</div>
-                </div>
-            </div>
+            <BoxHeader icon={icon} message={message} action={action} />
+            
             <div className={classNames(mStyles['body'])}>
                 <isPhoneContext.Consumer>
                     {isPhone => (

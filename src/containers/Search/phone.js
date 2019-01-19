@@ -11,6 +11,7 @@ class SearchPhone extends React.Component {
     constructor (props) {
         super (props);
         this.dataList = [];
+        this.pageNo = 1;
         this.boxHeight = document.getElementById('root').clientHeight - 150;
     }
 
@@ -18,9 +19,9 @@ class SearchPhone extends React.Component {
         this.dataList = null;
     }
 
-    handlePullUp = (pageNo) => () => {
+    handlePullUp = () => {
         let {handleChangePage, size} = this.props;
-        handleChangePage(pageNo+1, size, 1);
+        handleChangePage(this.pageNo+1, size, 1);
     }
 
     getDataList = (queryData, queryPage) => {
@@ -39,20 +40,21 @@ class SearchPhone extends React.Component {
         let {qVariables, qSkip, setLastId} = this.props;
 
         return (
-            <Query query={getSearchComicList} variables={qVariables} skip={qSkip} loadingType="liner">
-                {({data}) => {
-                    let { result, page } = data.searchComicList;
-                    let dataArr = this.getDataList(result, page);
-                    setLastId(result.slice(-1)[0] ? result.slice(-1)[0].id : undefined);
-                    return (
-                        <Scroll updateScrollToTop={false} pullUpFunc={this.handlePullUp(page.no)} height={this.boxHeight}>
-                            <div className={mStyle["search-list"]}>
-                                <BoxList dataArr={dataArr} maxNum={0} isPhone={true} />
-                            </div>
-                        </Scroll>
-                    );
-                }}
-            </Query>
+            <Scroll updateScrollToTop={false} pullUpFunc={this.handlePullUp} height={this.boxHeight} refreshAfterPullFunc={false}>
+                <Query query={getSearchComicList} variables={qVariables} skip={qSkip} loadingType="liner">
+                    {({data}) => {
+                        let { result, page } = data.searchComicList;
+                        let dataArr = this.getDataList(result, page);
+                        this.pageNo = page.no;
+                        setLastId(result.slice(-1)[0] ? result.slice(-1)[0].id : undefined);
+                        return (
+                                <div className={mStyle["search-list"]}>
+                                    <BoxList dataArr={dataArr} maxNum={0} isPhone={true} />
+                                </div>
+                        );
+                    }}
+                </Query>
+            </Scroll>
         )
    }
 }

@@ -24,6 +24,11 @@ class Store {
     @action setToolbarsForPhone = (state) => {
         this.phoneToolbars = state;
     }
+
+    @observable cleanModal = false;
+    @action changeCleanModal = state => {
+        this.cleanModal = state;
+    }
 };
 
 export default new Store();

@@ -92,6 +92,11 @@ export default {
             paper: {
                 background: '#FFF7B0',
             }
+        },
+        MuiButton: {
+            sizeSmall: {
+                fontSize: 14,
+            }
         }
     }
 }

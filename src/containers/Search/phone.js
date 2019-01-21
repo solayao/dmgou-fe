@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import BoxList from '@proje/BoxList';
 import Query from '@gql/Query';
-import {getSearchComicList} from '@/query';;
+import {getSearchComicList} from '@/query';
 import Scroll from '@phone/Scroll';
 import mStyle from './index.module.scss';
-
 
 class SearchPhone extends React.Component {
     constructor (props) {

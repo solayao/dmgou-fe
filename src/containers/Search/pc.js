@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Fab from '@material-ui/core/Fab';
-import SettingIcon from '@material-ui/icons/SettingsOutlined';
 import PaginationBtn from './part/paginationBtn';
 import BoxList from '@proje/BoxList';
 import Query from '@gql/Query';

@@ -5,15 +5,11 @@ import {isNotEmpty} from 'dizzyl-util/lib/type';
 import Fab from '@material-ui/core/Fab';
 import BuildIcon from '@material-ui/icons/BuildOutlined';
 import SearchBtn from './part/searchBtn';
-import Query from '@gql/Query';
-import {getSearchComicList} from '@/query';
 import ToolBox from './part/toolBox';
 import PopModal from '@proje/PopModal';
-import mStyle from './index.module.scss';
 
 const ModelPc  = React.lazy(() => import("./pc"));
 const ModelPhone  = React.lazy(() => import("./phone"));
-
 
 const defaultPageProps = {
     no: 1,
@@ -48,6 +44,10 @@ class SearchComponent extends React.Component {
         pageProps: {...defaultPageProps},
         sort: 't_dom',
     };
+
+    componentWillUnmount () {
+        this.C = this.lastId = null;
+    }
 
     handleInput = () => {
         let d = this.props.searchInputVal;
@@ -95,6 +95,7 @@ class SearchComponent extends React.Component {
         this.setState({
             sort,
             searchProps,
+            pageProps: {...defaultPageProps},
         });
     }
 

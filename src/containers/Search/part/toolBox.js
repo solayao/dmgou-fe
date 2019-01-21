@@ -132,7 +132,7 @@ class ToolBox extends React.PureComponent {
                                             ))
                                         }
                                     </RadioGroup>
-                                )} actions={null} defaultExpanded={true} />
+                                )} actions={null} defaultExpanded={!!sortVal} />
 
                                 <ExpansionCard header={(<StateHeader />)} content={(
                                     <RadioGroup value={stateVal} onChange={this.handleChangeState}
@@ -150,7 +150,7 @@ class ToolBox extends React.PureComponent {
                                             ))
                                         }
                                     </RadioGroup>
-                                )} actions={null} />
+                                )} actions={null} defaultExpanded={!!stateVal} />
 
                                 <ExpansionCard header={(<TypeHeader />)} content={(
                                     <FormGroup row={true} className={mStyle['tool-group']}>
@@ -170,7 +170,7 @@ class ToolBox extends React.PureComponent {
                                             ))
                                         }
                                     </FormGroup>
-                                )} actions={null} />
+                                )} actions={null} defaultExpanded={typeVal.length > 0}/>
                             </div>
                         );
                     }}

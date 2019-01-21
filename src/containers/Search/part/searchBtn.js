@@ -41,12 +41,15 @@ class SearchBtn extends React.Component {
         if (this.inputRef) {
             this.inputRef.removeEventListener('keypress', this.handleInput)
         }
+
         this.props.changeSearchInputVal('');
+
         this.inputRef = null;
     }
 
     inputChange = (val) => {
         this.inputRef.value = val;
+
         this.inputRef.focus();
 
         this.props.handleSearch();
@@ -57,12 +60,12 @@ class SearchBtn extends React.Component {
             event.preventDefault();
 
             this.props.changeSearchInputVal(this.inputRef.value);
-            this.props.handleSearch();
         }
     }
 
     handleClickBtn = () =>　{
-        this.props.handleSearch();
+        // this.props.handleSearch();
+        this.props.changeSearchInputVal(this.inputRef.value);
     }
 
     textFieldInputProps = ({
@@ -79,20 +82,22 @@ class SearchBtn extends React.Component {
 
     render () {
         return (
-            <form autoComplete="off">
-                <TextField
-                    id="search-input"
-                    fullWidth
-                    autoFocus
-                    label="输入查询"
-                    placeholder="请输入用户名称、作者"
-                    margin="normal"
-                    type="search"
-                    variant="outlined"
-                    inputRef={this.textFieldRefBind}
-                    InputProps={this.textFieldInputProps}
-                />
-            </form>
+            <React.Fragment>
+                <form autoComplete="off">
+                    <TextField
+                        id="search-input"
+                        fullWidth
+                        autoFocus
+                        label="输入查询"
+                        placeholder="请输入用户名称、作者"
+                        margin="normal"
+                        type="search"
+                        variant="outlined"
+                        inputRef={this.textFieldRefBind}
+                        InputProps={this.textFieldInputProps}
+                    />
+                </form>
+            </React.Fragment>
         )
     }
 } 

@@ -43,3 +43,37 @@
         margin-bottom: 10px;
     }
 }
+
+.chapter-image {
+    position: relative;
+    text-align: center;
+    background: #424242;
+    padding: 5px;   
+}
+
+.hover-area {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+}
+
+.left-allow {
+    left: 0;
+    &:hover {
+        cursor: url('./img/back.png'), pointer;
+    }
+}
+
+.right-allow {
+    right: 0;
+    &:hover {
+        cursor: url('./img/next.png'), pointer;
+    }
+}
+
+.allow-disabled {
+    &:hover {
+        cursor: not-allowed;
+    }
+}

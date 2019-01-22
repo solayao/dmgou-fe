@@ -26,7 +26,8 @@ class ChapterComponent extends React.PureComponent {
         
         let {isPhone, history} = props;
 
-        this.C = isPhone ? ModelPhone : ModelPc;
+        // this.C = isPhone ? ModelPhone : ModelPc;
+        this.C = ModelPc;
 
         this.urlSearch = JSON.parse(sessionStorage.getItem('urlSearch'));
 

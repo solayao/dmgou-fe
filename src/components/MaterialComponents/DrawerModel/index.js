@@ -45,7 +45,7 @@ const Fragment = React.Fragment;
         {
             onClose: toggleDrawer(false),
             classes: Object.assign({
-                paper: mStyles['Dui-drawer-paper']
+                paper: mStyles['drawer-paper']
             }, orClasses),
             anchor,
             open,

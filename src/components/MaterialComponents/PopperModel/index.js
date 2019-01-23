@@ -44,7 +44,7 @@ class PopperModel extends React.PureComponent {
 
     render () {
         let {anchorEl, open} = this.state,
-            {btnNode, popNode, popPlacement, positionTop} = this.props;
+            {btnNode, popNode, positionTop} = this.props;
 
         return (
             <React.Fragment>
@@ -52,7 +52,7 @@ class PopperModel extends React.PureComponent {
                     style={{ top: `${positionTop}vh`}}>
                     {btnNode}
                 </div>
-                <Popper open={open} anchorEl={anchorEl} transition placement={popPlacement}>
+                <Popper open={open} anchorEl={anchorEl} transition>
                     {({ TransitionProps }) => (
                         <Fade {...TransitionProps}>
                             <Paper>
@@ -71,7 +71,6 @@ PopperModel.propTypes = {
     popNode: PropTypes.node.isRequired,
     autoClose: PropTypes.bool,
     autoCloseTime: PropTypes.number,
-    popPlacement: PropTypes.string,
     positionTop: PropTypes.number,
 };
 PopperModel.defaultProps = {
@@ -79,7 +78,6 @@ PopperModel.defaultProps = {
     popNode: (<div>内容</div>),
     autoClose: true,
     autoCloseTime: 10,
-    popPlacement: 'bottom',
     positionTop: 90,
 };
 

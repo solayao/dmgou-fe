@@ -9,7 +9,7 @@ const CarouselModel = React.lazy(() => import('@antd/CarouselModel'));
 const createList = (dataArr, max) => {
     if (!!max) {
         let pageSize = Math.floor(dataArr.length / max) + 1;
-        let arr = new Array(pageSize).toString().split(',');
+        let arr = new Array(pageSize).fill('');
         arr = arr.map((v, i) => {
             let dStart = i * max;
             let dEnd = (i + 1) * max;

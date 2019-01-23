@@ -11,8 +11,8 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import LozadWrapper from '@/components/DizzyComponents/LozadWrapper';
 
 const GridListTileBarClasses = {
-    root: classNames(mStyles['Dui-gl-tilebar']),
-    title: classNames(mStyles['Dui-gl-title'])
+    root: classNames(mStyles['gl-tilebar']),
+    title: classNames(mStyles['gl-title'])
 }
 /**
  * 单行画廊
@@ -29,7 +29,7 @@ function RowGallery(props) {
             clickTitle = e.target.getAttribute('alt');
         } else {
             const eClasses = e.target.getAttribute('class');
-            if (eClasses.includes('Dui-gl-title')) {
+            if (eClasses.includes('gl-title')) {
                 clickTitle = e.target.innerHTML;
             }
             else if (eClasses.includes('MuiGridListTile-tile')) {
@@ -40,8 +40,8 @@ function RowGallery(props) {
     }
     
     return (
-        <div className={mStyles["Dui-gl-root"]}>
-            <GridList className={mStyles["Dui-gl"]} cols={cols} onClick={handleClickList}>
+        <div className={mStyles["gl-root"]}>
+            <GridList className={mStyles["gl-list"]} cols={cols} onClick={handleClickList}>
                 {tileList.map(tile => (
                     <GridListTile key={shortid.generate()}>
                         <LozadWrapper src={tile.img} srcset={tile.srcset} alt={tile.title} />

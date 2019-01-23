@@ -124,7 +124,9 @@ class SearchComponent extends React.Component {
                     pageProps={pageProps} qVariables={qVariables} qSkip={qSkip} />
 
                 <PopModal btnNode={(<ToolNode />)} autoClose={false} 
-                    popNode={(<ToolBox setParentProps={this.handleGetSST} defaultSort={sort} defaultState={searchProps.s} defaultType={searchProps.t} />)} />
+                    popNode={(<ToolBox setParentProps={this.handleGetSST} defaultSort={sort} 
+                        defaultState={searchProps.s} defaultType={searchProps.t} />
+                    )} />
             </section>
         );
    }

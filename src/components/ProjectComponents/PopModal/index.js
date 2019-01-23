@@ -54,7 +54,7 @@ class PopModal extends React.Component {
                     style={{ top: `${btnPositionTop}vh`, right: `${btnPositionRight}vw`}}>
                     {btnNode}
                 </div>
-                <Modal open={open} onBackdropClick={this.handleModalClose}
+                <Modal open={open} onBackdropClick={this.handleModalClose} disableAutoFocus={true}
                     BackdropProps={modalBackdropProps}>
                     {popNode}
                 </Modal>

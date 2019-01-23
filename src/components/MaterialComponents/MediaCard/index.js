@@ -27,7 +27,7 @@ function MediaComponent(media) {
     // className={classNames(media.className)} /> : null;
     return media
         ? <LozadWrapper
-            classes={mStyles["Dui-cm-media"]}
+            classes={mStyles["mc-cm-media"]}
             src={media.image}
             srcset={media.srcset}
             alt={media.title}
@@ -49,7 +49,7 @@ function ActionsComponent(actions) {
 
 // override样式
 const caaClasses = {
-    root: mStyles['Dui-caa-root']
+    root: mStyles['mc-caa-root']
 };
 /**
  * 媒体卡片
@@ -66,7 +66,7 @@ function MediaCard(props) {
  
     // 控件渲染
     return (
-        <Card className={mStyles["Dui-c"]}>
+        <Card className={mStyles["mc-root"]}>
             <CardActionArea classes={caaClasses} className={classNames(mStyles[layout])}>
                 {HeaderComponent(header)}
                 {MediaComponent(media)}

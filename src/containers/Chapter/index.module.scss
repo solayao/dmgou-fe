@@ -1,13 +1,8 @@
-.chapter {
+@import '../../style/variable.scss';
+
+.chapter-root {
     width: 80%;
     margin: 0 auto;
-}
-
-.chapter-bg {
-    background: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .chapter-bread {
@@ -44,11 +39,27 @@
     }
 }
 
-.chapter-image {
+.image-root {
     position: relative;
     text-align: center;
     background: #424242;
-    padding: 5px;   
+}
+
+.image-load {
+    position: absolute;
+    width: 100%;
+    top: 0;
+}
+
+.image-error {
+    position: absolute;
+    top: 30%;
+    left: 45%;
+    z-index: 101;
+    & svg {
+        font-size: 100px; 
+        color: white;
+    }
 }
 
 .hover-area {
@@ -56,12 +67,14 @@
     top: 0;
     width: 50%;
     height: 100%;
+    z-index: 100;
 }
 
 .left-allow {
     left: 0;
     &:hover {
         cursor: url('./img/back.png'), pointer;
+        background: linear-gradient(to right, rgba(255,255,255,0.3), rgba(0,0,0,0) 10%);
     }
 }
 
@@ -69,6 +82,7 @@
     right: 0;
     &:hover {
         cursor: url('./img/next.png'), pointer;
+        background: linear-gradient(to left, rgba(255,255,255,0.3), rgba(0,0,0,0) 10%);
     }
 }
 
@@ -76,4 +90,45 @@
     &:hover {
         cursor: not-allowed;
     }
+}
+
+.image-vc {
+    position: absolute;
+    top: 0%;
+    right: 10px;
+    z-index: 101;
+    & svg {
+        font-size: 50px; 
+        color: white;
+    }
+}
+
+.barrage-hidden {
+    visibility:hidden;
+}
+
+.toolbox-root {
+    display: block;
+    width: 20vw;
+    position: absolute;
+    top: 2vh;
+    right: 10px;
+    padding: 5px;
+}
+
+.toolbox-title {
+    margin-right: 10px;
+}
+
+// pc
+.pc-img-root {
+    position: relative;
+}
+
+.pc-barrage-root {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }

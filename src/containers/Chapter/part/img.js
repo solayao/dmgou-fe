@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import LoadingComponent from '@dizzy/LoadingComponent';
+import IconButton from '@material-ui/core/IconButton';
+import ReplayIcon from '@material-ui/icons/Replay';
+import ViewCarouselIcon from '@material-ui/icons/ViewCarouselOutlined';
+import ImageActionModel from '@dizzy/ImageLightBox';
 import mStyle from '../index.module.scss';
 
 class ImgModel extends React.PureComponent {
@@ -15,13 +20,17 @@ class ImgModel extends React.PureComponent {
 
         this.imgRefs = React.createRef();
 
-        this.imgHeight = document.getElementById('root').clientHeight - 100;
+        this.imgHeight = props.imgHeight;
     }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.showImgNo !== this.state.pageNo) {
             this.setState({pageNo: nextProps.showImgNo, loading: true})
         }
+    }
+
+    componentWillUpdate (nextProps, nextState) {
+        if (nextProps.handleLoadOrError) nextProps.handleLoadOrError(nextState.loading || nextState.error)
     }
 
     componentWillUnmount ()　{
@@ -57,17 +66,15 @@ class ImgModel extends React.PureComponent {
         })
     }
 
-    // renderViewCarouselIcon = (showFunc) => {
-    //     return (
-    //         <ViewCarouselIcon aria-label="放大" onClick={showFunc}><ReplayIcon/></ViewCarouselIcon>
-    //     )
-    // }
+    renderViewCarouselIcon = (showFunc) => (
+        <ViewCarouselIcon aria-label="放大" onClick={showFunc} />
+    )
     
     getImgSrcSet = (src) => {
         let src1x = `${src}?w=0&h=${this.imgHeight}&q=100 1x`;
         let src2x = `${src}?w=0&h=${this.imgHeight*2}&q=90 2x`;
         let src3x = `${src}?w=0&h=${this.imgHeight*3}&q=90 3x`;
-        return `${src1x}, ${src2x}, ${src3x};`
+        return `${src1x}, ${src2x}, ${src3x}`;
     }
 
     render() {
@@ -78,41 +85,53 @@ class ImgModel extends React.PureComponent {
         let imgSrcSet = this.getImgSrcSet(imgUrlList[pageNo - 1]);
 
         return (
-            <div className={mStyle["chapter-image"]}>
-                <div className={classNames(mStyle['hover-area'], mStyle["left-allow"], pageNo === 1 && mStyle['allow-disabled'])}
-                    onClick={this.handleClick(-1)}></div>
+            <React.Fragment>
+                <div className={mStyle["image-root"]} style={{height: this.imgHeight + 10, padding: 5}}>
+                    <div className={classNames(mStyle['hover-area'], mStyle["left-allow"], pageNo === 1 && mStyle['allow-disabled'])}
+                        onClick={this.handleClick(-1)}></div>
 
-                <img 
-                    key={imgSrc}
-                    ref={this.imgRefs}
-                    src={imgSrc}
-                    srcSet={imgSrcSet}
-                    alt={'第' + pageNo + '页'}
-                    onLoad={this.imgOnLoad}
-                    onError={this.imgError}
-                    style={{display: error ? 'none' : undefined}}
-                />
+                    <img 
+                        key={imgSrc}
+                        ref={this.imgRefs}
+                        src={imgSrc}
+                        srcSet={imgSrcSet}
+                        alt={'第' + pageNo + '页'}
+                        onLoad={this.imgOnLoad}
+                        onError={this.imgError}
+                        style={{display: error ? 'none' : undefined}}
+                    />
 
-                {/* {loading && !error && <div
-                    style={loadStyle}
-                    ><LoadingComponent moduleType="ball-spin-fade-loader" /></div>} */}
+                    {loading && !error && (
+                        <div className={mStyle["image-load"]} style={{height: this.imgHeight}}>
+                            <LoadingComponent moduleType="ball-spin-fade-loader" />
+                        </div>
+                    )}
 
-                {/* {error && <div className={mStyle["chapter-replay"]}
-                    style={errorStyle}><IconButton aria-label="刷新" onClick={this.handleReplay(imgSrc)}><ReplayIcon/></IconButton></div>} */}
+                    {error && (
+                        <div className={mStyle["image-error"]}>
+                            <IconButton aria-label="刷新" onClick={this.handleReplay(imgSrc)}>
+                                <ReplayIcon/>
+                            </IconButton>
+                        </div>
+                    )}
 
-                {/* {!loading && !error && <div className={mStyle["chapter-view_carousel"]}>
-                    <ImageActionModel
-                        currentIndex={pageNo-1} 
-                        imageList={imgUrlList} 
-                        createActionFunc={this.renderViewCarouselIcon}
-                        srcFormat={"?w=500&h=0&q=100"}
-                        canPrevOrNext={false}
-                    /></div>
-                } */}
+                    {!loading && !error && (
+                        <div className={mStyle["image-vc"]}>
+                            <ImageActionModel
+                                currentIndex={pageNo-1} 
+                                imageList={imgUrlList} 
+                                createActionFunc={this.renderViewCarouselIcon}
+                                srcFormat={"?w=500&h=0&q=95"}
+                                canPrevOrNext={false}
+                            />
+                        </div>
+                    )}
 
-                <div className={classNames(mStyle['hover-area'], mStyle["right-allow"], pageNo === imgUrlList.length && mStyle['allow-disabled'])}
-                    onClick={this.handleClick(1)}></div>
-            </div>
+                    <div className={classNames(mStyle['hover-area'], mStyle["right-allow"], pageNo === imgUrlList.length && mStyle['allow-disabled'])}
+                        onClick={this.handleClick(1)}></div>
+                </div>
+
+            </React.Fragment>
         )
     }
 }
@@ -120,13 +139,12 @@ class ImgModel extends React.PureComponent {
 ImgModel.propTypes = {
     imgUrlList: PropTypes.array.isRequired,
     showImgNo: PropTypes.number,
+    changePageNum: PropTypes.func,
+    imgHeight: PropTypes.number,
+    handleLoadOrError: PropTypes.func,
 };
 ImgModel.defaultProps = {
-    imgUrlList: [
-        '/getImg/overseas/dmzj/img/12/20100109_5320f4f20a8aab8a89a2YDKSyjq8yRZp.jpg',
-        '/getImg/domestic/dmzj/img/11/1007321311539747852.jpg',
-        '/getImg/overseas/dmzj/img/14/langyuxiangxinliao0119.jpg'
-    ],
+    imgUrlList: [],
     showImgNo: 1
 };
 

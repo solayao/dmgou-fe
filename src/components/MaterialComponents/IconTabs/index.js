@@ -83,7 +83,7 @@ class IconTabs extends React.Component {
                             icon={tab.icon || ''}
                             label={tab.badgeContent ? 
                                 (<Badge color="secondary" badgeContent={tab.badgeContent}
-                                    classes={{badge: mStyles['Dui-badge-num']}}>{tab.label}</Badge>
+                                    classes={{badge: mStyles['badge-num']}}>{tab.label}</Badge>
                                 ) : tab.label
                             } 
                         />

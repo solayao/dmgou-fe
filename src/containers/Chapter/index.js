@@ -114,13 +114,15 @@ class ChapterComponent extends React.PureComponent {
                             // }
 
                             return (
-                                <div className={mStyle['chapter']}>
+                                <div className={mStyle['chapter-root']}>
                                     <div className={mStyle['chapter-bread']}>
                                         <BreadModel cn={cn} name={name} chapterType={chapterType} />
                                     </div>
                                     
-                                    <this.C imgList={imgList} currentCh={ch} chapterList={this.chapterIdList} 
-                                        changeChapter={this.changeChapter} />
+                                    <this.C currentCh={ch} chapterList={this.chapterIdList} 
+                                        changeChapter={this.changeChapter} 
+                                        // imgList={imgList}
+                                        />
                                 </div>
                             )
                         }}

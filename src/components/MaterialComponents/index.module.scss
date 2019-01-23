@@ -1,12 +1,12 @@
 @import  '../../style/variable.scss';
 
 // DrawerModel
-.Dui-drawer-paper {
+.drawer-paper {
     white-space: nowrap;
 }
 
 //IconTabs
-.Dui-badge-num {
+.badge-num {
     right: -30px;
     opacity: 0.5;
 }
@@ -14,14 +14,14 @@
 // MediaCard
 $left-right-img-width: 100px;
 
-.Dui-c {
+.mc-root {
     height: 100%;
     @media screen and (min-width: $discern_value) {
         max-width: 345px;
     }
 }
 
-.Dui-caa-root {
+.mc-caa-root {
     display: flex;
     flex-direction: column;
     position: relative;
@@ -29,7 +29,7 @@ $left-right-img-width: 100px;
     width: 100%;
 }
 
-.Dui-cm-media {
+.mc-cm-media {
     height: 150px;
     width: 100%;
     background-size: 100% 100%;
@@ -39,7 +39,7 @@ $left-right-img-width: 100px;
     @media screen and ($discern_key: $discern_value) {
         padding-left: $left-right-img-width * 3;
     }
-    .Dui-cm-media{
+    .mc-cm-media{
         position: absolute;
         height: 100%;
         width: $left-right-img-width;
@@ -55,7 +55,7 @@ $left-right-img-width: 100px;
     @media screen and ($discern_key: $discern_value) {
         padding-right: $left-right-img-width * 3;
     }
-    .Dui-cm-media{
+    .mc-cm-media{
         position: absolute;
         height: 100%;
         width: $left-right-img-width;
@@ -68,14 +68,15 @@ $left-right-img-width: 100px;
 }
 
 // RowGallery
-.Dui-gl-root {
+.gl-root {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     overflow: hidden,
 }
-.Dui-gl {
+.gl-list {
+    width: 100%;
     // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
     transform: translateZ(0);
     flex-wrap: nowrap;
@@ -83,9 +84,9 @@ $left-right-img-width: 100px;
         cursor: pointer;
     }
 }
-.Dui-gl-tilebar {
+.gl-tilebar {
     background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%);
 }
-.Dui-gl-title {
+.gl-title {
     font-size: 16px;
 }

@@ -12,9 +12,6 @@ class ScrollModel extends React.Component {
 
     componentDidMount() {
         this.initScroll();
-        if (this.props.onRef) {
-            this.props.onRef(this);
-        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -24,60 +21,64 @@ class ScrollModel extends React.Component {
     }
 
     componentWillUnmount() {
-        this.wrapperRefs = this.scrollEnd = null;
+        this.wrapperRefs = null;
+        this.scroll.destroy();
     }
 
     initScroll = () => {
         if (!this.scroll) {
             this.scroll= new BScroll(this.wrapperRefs.current, {
-                pullDownRefresh: {
-                    threshold: 50, // 当下拉到超过顶部 50px 时，触发 pullingDown 事件
+                pullDownRefresh: true,
+                pullUpLoad: true,
+                mouseWheel: {    // pc端同样能滑动
+                    speed: 20,
+                    invert: false
                 },
-                pullUpLoad: {
-                    threshold: -20 // 在上拉到超过底部 20px 时，触发 pullingUp 事件
+                useTransition:false,  // 防止iphone微信滑动卡顿
+                scrollbar: {
+                    fade: true,
+                    interactive: false
                 },
-                click: true,
+                startY: this.props.defaultY,
             });
-            this.pullUp();
-            this.pullDown();
+            this.listenPullUp();
+            this.listenPullDown();
         } else {
             this.scroll.refresh();
         }
-        this.scrollTo(0, 0);
     }
 
-    pullUp = () => {
-        this.scroll.on('pullingUp', () => {
+    listenPullUp = () => {
+        let _this = this;
+
+        _this.scroll.on('pullingUp', () => {
+            let lastMaxScrollY = _this.scroll.maxScrollY;
+
             new Promise(async (resolve, reject) => {
-                if (this.props.pullUpFunc) resolve( await this.props.pullUpFunc());
-                resolve(null);
-            })
-            .then((newData) => {
+                if (_this.props.pullUpFunc) await _this.props.pullUpFunc();
+                if (_this.props.getLastScrollY) _this.props.getLastScrollY(lastMaxScrollY);
+                _this.scroll.finishPullUp();
+                resolve();
+            }).then(() => {
                 // 在刷新数据完成之后，调用 finishPullUp 方法
-                this.scroll.finishPullUp();
-
-                if (this.props.refreshAfterPullFunc) this.refresh();
+                if (_this.props.refreshAfterPullFunc) 
+                    _this.scroll.refresh();
             });
         });
     }
 
-    pullDown = () => {
-        this.scroll.on('pullingDown', () => {
+    listenPullDown = () => {
+        let _this = this;
+        _this.scroll.on('pullingDown', () => {
             new Promise(async (resolve, reject) => {
-                if (this.props.pullDownFunc) resolve( await this.props.pullDownFunc());
-                resolve(null);
-            })
-            .then((newData) => {
-                // console.log(newData)
+                if (_this.props.pullDownFunc) await _this.props.pullDownFunc();
+                _this.scroll.finishPullDown();
+                resolve();
+            }).then(() => {
                 // 在刷新数据完成之后，调用 finishPullDown 方法
-                this.scroll.finishPullDown();
-                if (this.props.refreshAfterPullFunc) this.refresh();
+                if (_this.props.refreshAfterPullFunc) _this.scroll.refresh();
             });
         });
-    }
-
-    refresh = () => {
-        this.scroll.refresh();
     }
 
     scrollTo = (x, y) => {
@@ -86,8 +87,7 @@ class ScrollModel extends React.Component {
         }
         this.scroll.scrollTo(x, y, 1000);
         if(x === 0 && y === 0) {
-            this.scroll.finishPullDown();
-            this.refresh();
+            this.scroll.refresh();
         }
     }
 
@@ -115,11 +115,14 @@ ScrollModel.propTypes = {
     height: PropTypes.number.isRequired,
     updateScrollToTop: PropTypes.bool,
     refreshAfterPullFunc: PropTypes.bool,
+    getLastScrollY: PropTypes.func,
+    defaultY: PropTypes.number,
 };
 ScrollModel.defaultProps = {
     height: 500,
     updateScrollToTop: false,
-    refreshAfterPullFunc: true
+    refreshAfterPullFunc: true,
+    defaultY: 0
 };
 
 export default ScrollModel;

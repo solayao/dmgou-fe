@@ -3,6 +3,10 @@
 .chapter-root {
     width: 80%;
     margin: 0 auto;
+
+    @media screen and ($discern_key: $discern_value) {
+        width: 95%;
+    }
 }
 
 .chapter-bread {
@@ -131,4 +135,14 @@
     bottom: 0;
     left: 0;
     right: 0;
+}
+
+// phone
+.phone-imgList {
+    background: #000;
+    width: 100%;
+
+    & li {
+        margin: 15px 5px;
+    }
 }

@@ -7,6 +7,9 @@ import BuildIcon from '@material-ui/icons/BuildOutlined';
 import SearchBtn from './part/searchBtn';
 import ToolBox from './part/toolBox';
 import PopModal from '@proje/PopModal';
+import Query from '@gql/Query';
+import $Snackbar from '@mui/SnackbarModel';
+import {getSearchComicList} from '@/query';
 
 const ModelPc  = React.lazy(() => import("./pc"));
 const ModelPhone  = React.lazy(() => import("./phone"));
@@ -37,6 +40,10 @@ class SearchComponent extends React.Component {
         this.lastId = null;
 
         this.C = props.isPhone ? ModelPhone : ModelPc;
+
+        this.phoneLastDataList = [];
+
+        this.phoneStartY = 0;
     }
 
     state = {
@@ -45,8 +52,18 @@ class SearchComponent extends React.Component {
         sort: 't_dom',
     };
 
+    componentWillUpdate (nextProps, nextState) {
+        let p = this.state.sort !== nextState.sort ||
+            JSON.stringify(this.state.searchProps) !== JSON.stringify(nextState.searchProps);
+        if (p) {
+            this.phoneLastDataList = [];
+            this.phoneStartY = 0;
+        }
+    }
+
+
     componentWillUnmount () {
-        this.C = this.lastId = null;
+        this.C = this.lastId = this.phoneLastDataList = this.phoneStartY = null;
     }
 
     handleInput = () => {
@@ -109,6 +126,34 @@ class SearchComponent extends React.Component {
         })
     }
 
+    handlePhoneDataGet = (result) => {
+        if (this.props.isPhone) {
+            if (!isNotEmpty(result)) {
+                $Snackbar({
+                    content: '已经没有资源了'
+                });
+                
+                return this.phoneLastDataList;
+            }
+
+            let oldIdList = this.phoneLastDataList.map(o => o.id);
+
+            let addList = result.filter(o => !oldIdList.includes(o.id));
+
+            this.phoneLastDataList.push(...addList);
+
+            oldIdList = addList = null;
+
+            return this.phoneLastDataList;
+        }
+
+        return result;
+    }
+
+    handleSetPhoneLastScrollY = (yNum) => {
+        this.phoneStartY = yNum;
+    }
+
     render () {
         let {searchProps, pageProps, sort} = this.state;
 
@@ -119,9 +164,26 @@ class SearchComponent extends React.Component {
         return (
             <section>
                 <SearchBtn handleSearch={this.handleInput} />
-                
-                <this.C handleChangePage={this.handleChangePage} setLastId={this.handleSetLastId}
-                    pageProps={pageProps} qVariables={qVariables} qSkip={qSkip} />
+
+                <Query query={getSearchComicList} variables={qVariables} skip={qSkip} loadingType="liner">
+                    {({data}) => {
+                        let { result, page } = data.searchComicList;
+
+                        this.handleSetLastId(result.slice(-1)[0] ? result.slice(-1)[0].id : undefined);
+
+                        let finalResult = this.handlePhoneDataGet(result);
+
+                        return (
+                            <this.C
+                                handleChangePage={this.handleChangePage}
+                                dataArr={finalResult}
+                                pageProps={pageProps}
+                                searchPage={page}
+                                phoneStartY={this.phoneStartY}
+                                getLastScrollY={this.handleSetPhoneLastScrollY} />
+                        );
+                    }}
+                </Query>
 
                 <PopModal btnNode={(<ToolNode />)} autoClose={false} 
                     popNode={(<ToolBox setParentProps={this.handleGetSST} defaultSort={sort} 

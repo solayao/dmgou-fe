@@ -23,7 +23,7 @@ function DetailComponent(props) {
 
     let handleChipClick = (id, comicId) => () => {
         history.push({ 
-            pathname: !isPhone ? '/chapter' : '/chapterPhone', 
+            pathname: '/chapter', 
             search: `ch=${id}&co=${comicId}&cn=${cName}`, 
         });
     };

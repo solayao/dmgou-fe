@@ -24,6 +24,11 @@ $topHeight: 63px;
         &>:nth-child(1) {
             padding-bottom: 100px;
         }
+        @media screen and ($discern_key: $discern_value) {
+            &>:nth-child(1) {
+                padding-bottom: 0;
+            }
+        }
     }
 }
 

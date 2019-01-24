@@ -3,11 +3,9 @@ import AppliedRoute from '../components/DizzyComponents/AppliedRoute';
 import AuthenticatedRoute from '../components/DizzyComponents/AuthenticatedRoute';
 import {isNotEmpty} from 'dizzyl-util/lib/type';
 /** 异步控件 */
-// const AsyncDemo = createAsyncComponent('Demo');
 const AsyncHome = createAsyncComponent('Home');
 const AsyncDetail = createAsyncComponent('Detail');
 const AsyncChapter = createAsyncComponent('Chapter');
-const AsyncChapterPhone = createAsyncComponent('Chapter/phone');
 const AsyncSearch = createAsyncComponent('Search');
 
 /** 获取url的search并存放到sessionStorage */
@@ -65,14 +63,6 @@ export default {
         text: '章节',
         C: AuthenticatedRoute,
         component: AsyncChapter,
-        isAuth: (location) => getUrlSearch(location).hasOwnProperty('ch'),
-        noAuthTo: '/home'
-    },
-    chapterPhone: {
-        path: '/chapterPhone',
-        text: '章节',
-        C: AuthenticatedRoute,
-        component: AsyncChapterPhone,
         isAuth: (location) => getUrlSearch(location).hasOwnProperty('ch'),
         noAuthTo: '/home'
     },

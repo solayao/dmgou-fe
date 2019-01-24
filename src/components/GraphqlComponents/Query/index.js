@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Query} from "react-apollo";
-import { getPrototypeType } from 'dizzyl-util/lib/type';
+import {getPrototypeType} from 'dizzyl-util/lib/type';
 import LoadingLiner from '../../MaterialComponents/LoadingLinear';
 import LoadingCircular from '../../MaterialComponents/LoadingCircular';
 import SkeletonModel from '../../AntdComponents/SkeletonModel';
@@ -26,20 +26,16 @@ function QueryModel(props) {
         <Query {...queryProps}>
             { resultProps => {
                 let {error, loading} = resultProps, {skip} = queryProps;
-                let child = null, LoadModel = null;
-                if (!loading && !skip)  {
-                    child = error ? '查询失败' : children(resultProps);
-                }
-                if (loading && loadingRender) {
-                    child = loadingRender;
-                }
+                let LoadModel = null;
                 if (['l','liner'].includes(loadingType)) LoadModel = LoadingLiner;
                 if (['c','circular'].includes(loadingType)) LoadModel = LoadingCircular;
                 if (['s','skeleton'].includes(loadingType)) LoadModel = SkeletonModel;
 
                 return (
                     <LoadModel loading={loading&&!skip} {...loadingProps}>
-                        {child}
+                        {loading && !!loadingRender && (loadingRender)}
+                        {error && (<span>'查询失败'</span>)}
+                        {!loading && !skip && !error && (children(resultProps))}
                     </LoadModel>
                 );
             }}
@@ -50,12 +46,12 @@ function QueryModel(props) {
 QueryModel.propTypes = {
     loadingType: PropTypes.string,
     loadingProps: PropTypes.object,
-    loadingRender: PropTypes.node
+    loadingRender: PropTypes.node,
 }
 QueryModel.defaultProps = {
     loadingType: 'circular',
     loadingProps: {},
-    loadingRender: null
+    loadingRender: null,
 }
 
 export default QueryModel;

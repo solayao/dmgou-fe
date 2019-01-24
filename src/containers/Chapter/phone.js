@@ -1,83 +1,44 @@
 import React from 'react';
-import {inject} from 'mobx-react';
+import PropTypes from 'prop-types';
 import shortid from 'shortid';
-import {Link} from 'react-router-dom';
-import {Breadcrumb} from 'antd';
-import mStyles from './index.module.scss';
-import LoadingComponent from '@dizzy/LoadingComponent';
-import LozadWrapper from '@dizzy/LozadWrapper';
-import Query from '@gql/Query';
-import {getChapterGallery} from '@/query';
+import Button from '@material-ui/core/Button';
 import Scroll from '@phone/Scroll';
-import {isNotEmpty} from 'dizzyl-util/lib/type';
-
+import LozadWrapper from '@dizzy/LozadWrapper';
 import $Dialog from '@mui/DialogModel';
 import $Snackbar from '@mui/SnackbarModel';
-import Button from '@material-ui/core/Button';
-import ExposureNeg1Icon from '@material-ui/icons/ExposureNeg1';
-import ExposurePlus1Icon from '@material-ui/icons/ExposurePlus1';
-import DescriptionIcon from '@material-ui/icons/Description';
+import mStyle from './index.module.scss';
 
-@inject(stores => ({
-    setToolbarsForPhone: stores.store.setToolbarsForPhone
-}))
-class ChapterPhone extends React.Component {
-    constructor(props) {
+class ChapterPhone extends React.PureComponent {
+    constructor (props) {
         super(props);
+
         this.boxWidth = null;
-        this.urlSearch = JSON.parse(sessionStorage.getItem('urlSearch'));
-        if (isNotEmpty(sessionStorage.getItem(`chapterList-${this.urlSearch.cn}`))) {
-            this.sessionChapterList = sessionStorage.getItem(`chapterList-${this.urlSearch.cn}`).split(',');
-        } else {
-            props.history.push({
-                pathname: '/detail',
-                search: `cn=${encodeURIComponent(this.urlSearch.cn)}`
-            });
-        }
+
         this.state = {
-            ch: this.urlSearch.ch,
-            socketImgList: null
-        };
-
-        if (!props.isPhone) this.isNotPhoneRedice();
-    }
-
-    componentWillMount () {
-        this.boxWidth = document.getElementById('root').clientWidth - 10;
-        this.props.setToolbarsForPhone([
-            <p onClick={this.handlePullDown}><ExposureNeg1Icon /></p>,
-            <p onClick={this.handlePullUp}><ExposurePlus1Icon /></p>,
-            <p onClick={this.handleBackToDes}><DescriptionIcon /></p>
-        ]);
-    }
-    
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.isPhone !== this.props.isPhone && !nextProps.isPhone) {
-            this.isNotPhoneRedice();
+            ch: props.currentCh
         }
     }
-    
-    componentWillUnmount () {
-        this.props.setToolbarsForPhone([]);
-        this.urlSearch = null;
+
+    componentWillMount ()　{
+        this.boxWidth = document.getElementById('root').clientWidth - 10;
     }
 
-    isNotPhoneRedice = () => {
-        const {ch} = this.state;
-        const {cn, co} = this.urlSearch;
-        this.props.history.push({ 
-            pathname: '/chapter', 
-            search: `ch=${ch}&co=${co}&cn=${cn}`, 
-        });
-        return false;
+    componentWillReceiveProps (nextProps) {
+        if (nextProps.currentCh !== this.state.ch) {
+            this.setState({
+                ch: nextProps.currentCh
+            })
+        }
+    }
+
+    componentWillUnmount () {
+        this.boxWidth = null;
     }
 
     showDialog = (contentText, indexChange = 0) => {
-        const {cn, co} = this.urlSearch, {ch} = this.state;
-        const chapterList = sessionStorage.getItem(`chapterList-${cn}`)
-            .split(',').map(s => s.slice(1));
-        const chapterIndex = parseInt(chapterList.indexOf(ch), 10);
-        const newIndex = chapterIndex + indexChange;
+        let {chapterList, changeChapter} = this.props, {ch} = this.state;
+        let chapterIndex = parseInt(chapterList.indexOf(ch), 10);
+        let newIndex = chapterIndex + indexChange;
         if (newIndex < 0 || newIndex > chapterList.length - 1) {
             $Snackbar({
                 content: '已经没有资源了'
@@ -96,22 +57,13 @@ class ChapterPhone extends React.Component {
                 {
                     node: (props) => (<Button color="primary" {...props}>确认</Button>),
                     onClick: (that) => {
-                        // that.handleClose();
                         $Dialog().destory();
-                        let replaceCh = chapterList[newIndex];
-                        this.props.history.replace({
-                            pathname: '/chapterPhone',
-                            search: `ch=${replaceCh}&co=${co}&cn=${cn}`
-                        });
-                        this.setState({
-                            ch: replaceCh
-                        })
+                        changeChapter(indexChange)();
                     },
                 },
                 {
                     node: (props) => (<Button {...props}>取消</Button>),
                     onClick: (that) => {
-                        // that.handleClose()
                         $Dialog().destory();
                     },
                 },
@@ -123,31 +75,6 @@ class ChapterPhone extends React.Component {
 
     handlePullUp = () => this.showDialog('将要阅读下一章漫画，请确认', 1);
 
-    handleBackToDes = () => {
-        const { history } = this.props, {cn} = this.urlSearch;
-        history.push({
-            pathname: '/detail',
-            search: `cn=${encodeURIComponent(cn)}`
-        });
-    }
-
-    handleSocket = (ch) => {
-        this.props.socketio.emit('fe-crawler-by-ch', ch)
-        this.props.socketio.on('fe-crawler-by-ch-back', data => {
-            this.setState({
-                socketImgList: data
-            })
-        })
-    }
-
-    renderLoading = (
-        <div
-            className={mStyles["Dui-chapter-bg"]}
-            style={{
-                height: 600
-            }}><LoadingComponent moduleType="ball-spin-fade-loader"/></div>
-    )
-
     getImgSrcSet = (src) => {
         let src1x = `${src}?w=${this.boxWidth}&h=0&q=100 1x`;
         let src2x = `${src}?w=${this.boxWidth*2}&h=0&q=95 2x`;
@@ -155,79 +82,48 @@ class ChapterPhone extends React.Component {
         return `${src1x}, ${src2x}, ${src3x}`;
     }
 
-    render() {
-        const { history } = this.props, {cn} = this.urlSearch, {ch, socketImgList} = this.state;
-        const sessionChapterList = sessionStorage.getItem(`chapterList-${cn}`).split(',');
-        const chapterList = sessionChapterList.map(s => s.slice(1));
-        const chapterType = sessionChapterList[chapterList.indexOf(ch)]
-            .includes('本') ? '本篇' : '番外';
-        return (
-            <div className={mStyles["Dui-chapter-phone"]}>
-                <Query query={getChapterGallery} variables={{id:ch}} loadingType="liner"
-                    loadingRender={this.renderLoading}
-                >
-                    {({data}) => {
-                        const {chapterDetailGallery} = data;
-                        const {name, imgList} = chapterDetailGallery;
-                        let imgResource = imgList;
-                        if (imgList.length === 0 && !socketImgList) {
-                            this.handleSocket(ch);
-                            return this.renderLoading
-                        }
-                        if (socketImgList && socketImgList.length === 0) {
-                            $Snackbar({
-                                content: '没有该漫画资源'
-                            });
-                            history.go(-1);
-                            return null;
-                        }
-                        if (socketImgList && socketImgList.length > 0) {
-                            imgResource = socketImgList;
-                        }
-                        return (
-                            <React.Fragment>
-                                <div className={mStyles["Dui-chapter-bread"]}>
-                                    <Breadcrumb>
-                                        <Breadcrumb.Item key="back-1">
-                                            <Link to={{
-                                                pathname: '/detail',
-                                                search: `cn=${encodeURIComponent(cn)}`
-                                            }}>{cn}</Link>
-                                        </Breadcrumb.Item>
-                                        <Breadcrumb.Item key="now">{chapterType} {name}</Breadcrumb.Item>
-                                    </Breadcrumb>
-                                </div>
+    render () {
+        let {imgList} = this.props;
 
-                                <Scroll key={shortid.generate()} updateScrollToTop={true}
-                                    pullDownFunc={this.handlePullDown} pullUpFunc={this.handlePullUp}
-                                    height={this.boxWidth*1.45}>
-                                    <ul className={mStyles["Dui-chapter-phone-imgList"]}>
-                                        {
-                                            imgResource.map((src, index) => (
-                                                <li key={index} style={{
-                                                    minHeight: this.boxWidth,
-                                                    height: 'auto'
-                                                }}>
-                                                    <LozadWrapper 
-                                                        src={src+`?w=${this.boxWidth}&h=0&q=100`}
-                                                        srcset={this.getImgSrcSet(src)}
-                                                        alt={'第'+index+'张'}
-                                                    />
-                                                </li>
-                                            ))
-                                        }
-                                    </ul> 
-                                </Scroll>
-                            </React.Fragment>
-                        )}
+        window.scrollTo(0,0);
+
+        return (
+            <Scroll key={shortid.generate()} updateScrollToTop={true}
+                pullDownFunc={this.handlePullDown} pullUpFunc={this.handlePullUp}
+                height={this.boxWidth*1.45}>
+                <ul className={mStyle["phone-imgList"]}>
+                    {
+                        imgList.map((src, index) => (
+                            <li key={src} style={{
+                                minHeight: this.boxWidth,
+                                height: 'auto'
+                            }}>
+                                <LozadWrapper 
+                                    src={src+`?w=${this.boxWidth}&h=0&q=100`}
+                                    srcset={this.getImgSrcSet(src)}
+                                    alt={'第'+index+'张'}
+                                />
+                            </li>
+                        ))
                     }
-                </Query>    
-            </div>
+                </ul> 
+            </Scroll>
         )
     }
 }
 
-ChapterPhone.propTypes = {};
-ChapterPhone.defaultProps = {};
+ChapterPhone.propTypes = {
+    imgList: PropTypes.array.isRequired,
+    currentCh: PropTypes.string,
+    chapterList: PropTypes.array,
+    changeChapter: PropTypes.func,
+}
+ChapterPhone.defaultProps = {
+    imgList: [
+        '/getImg/overseas/dmzj/img/12/20100109_5320f4f20a8aab8a89a2YDKSyjq8yRZp.jpg',
+        '/getImg/domestic/dmzj/img/11/1007321311539747852.jpg',
+        '/getImg/overseas/dmzj/img/14/langyuxiangxinliao0119.jpg'
+    ]
+}
 
 export default ChapterPhone;

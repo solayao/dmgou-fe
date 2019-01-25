@@ -18,7 +18,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
  * @prop {Node} actions
  */
 function ExpansionCard(props) {
-    const { expand, header, content, actions, defaultExpanded } = props;
+    let { expand, header, content, actions, defaultExpanded } = props;
 
     return (
         <ExpansionPanel defaultExpanded={defaultExpanded}>

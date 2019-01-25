@@ -19,11 +19,6 @@ class Store {
     @action changeSearchInputVal = (state) => {
         this.searchInputVal = trim(state);
     }
-    
-    @observable phoneToolbars = [];
-    @action setToolbarsForPhone = (state) => {
-        this.phoneToolbars = state;
-    }
 
     @observable cleanModal = false;
     @action changeCleanModal = state => {

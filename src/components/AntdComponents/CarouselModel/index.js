@@ -20,7 +20,7 @@ const defaulConfig = {
  * @returns
  */
 function CarouselModel (props) {
-    const { children, config } = props;
+    let { children, config } = props;
 
     return (
         <Carousel {...{...defaulConfig, ...config}}>

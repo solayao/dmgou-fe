@@ -25,7 +25,7 @@ class ScrollMess extends React.Component {
     }
 
     sc(dom) {
-        const { speed } = this.props;
+        let { speed } = this.props;
         function scroll(self) {
             /*往左*/
             let tmp = (self.scrollLeft)++;
@@ -47,7 +47,7 @@ class ScrollMess extends React.Component {
     }
 
     render() {
-        const { children } = this.props;
+        let { children } = this.props;
  
         return (
             <span className="scroll-mess" ref={this.spanRef}>{children}</span>

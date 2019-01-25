@@ -6,6 +6,7 @@ import VerticalSplitIcon from '@material-ui/icons/VerticalSplitOutlined';
 import Fab from '@material-ui/core/Fab';
 import PopperModel from '@mui/PopperModel';
 import BackTopModel from '@antd/BackTopModel';
+import mStyle from './index.module.scss';
 
 const RandomRead = React.lazy(() => import('./part/randomRead'));
 const TodayCommend = React.lazy(() => import('./part/todayCommend'));
@@ -20,7 +21,7 @@ const menuList = [
 const MenuNode = (handleClick) => (
     <List>
         {menuList.map(m => (
-            <ListItem button onClick={handleClick(m.key)}>{m.title}</ListItem>
+            <ListItem key={m.key} button onClick={handleClick(m.key)}>{m.title}</ListItem>
         ))}
     </List>
 )
@@ -51,7 +52,7 @@ class HomePhone extends React.PureComponent {
                 <PopperModel
                     btnNode={(<FabModel />)}
                     popNode={MenuNode(this.handleSelect)}
-                    positionTop="50"
+                    positionTop={50}
                     popPlacement="right"
                 />
                 <BackTopModel />

@@ -13,7 +13,7 @@ import shortid from 'shortid';
  * @returns
  */
 function SkeletonModel(props) {
-    const { children, loading, ...other } = props;
+    let { children, loading, ...other } = props;
     return (<Skeleton key={shortid.generate()} loading={loading} {...other}>{children}</Skeleton>);
 }
 

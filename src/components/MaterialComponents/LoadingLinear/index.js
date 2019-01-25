@@ -29,9 +29,8 @@ class LoadingLinear extends React.PureComponent {
     }
 
     componentWillUnmount() {
-        if (this.timer) clearInterval(this.timer);
-        if (this.finishTimer) clearInterval(this.finishTimer);
-        this.timer = this.finishTimer =null;
+        this.clean();
+        this.timer = this.finishTimer = this.startTimeout = null;
     }
 
     componentWillReceiveProps(nextProps) {
@@ -49,9 +48,16 @@ class LoadingLinear extends React.PureComponent {
         }
     }
 
+    clean = () => {
+        if (this.timer) clearInterval(this.timer);
+        if (this.finishTimer) clearTimeout(this.finishTimer);
+        if (this.startTimeout) clearTimeout(this.startTimeout);
+    }
+
     start = () => { // 开始Loading
+        this.clean();
         this.timer = setInterval(this.progress, 500);
-        setTimeout(()=> {
+        this.startTimeout = setTimeout(()=> {
             this.finsh();
         }, this.props.loadSecond * 1000);
     }
@@ -71,21 +77,21 @@ class LoadingLinear extends React.PureComponent {
     };
 
     progress = () => {  // 渐增
-        const { completed } = this.state;
+        let { completed } = this.state;
         if (completed > 90) {
             // this.setState({ completed: 0, buffer: 10 });
         } else {
-            const diff = Math.random() * 10;
-            const diff2 = Math.random() * 10;
+            let diff = Math.random() * 10;
+            let diff2 = Math.random() * 10;
             this.setState({ completed: completed + diff, buffer: completed + diff + diff2 });
         }
     };
 
     render() {
-        const { children, classes, style, mUiProps } = this.props;
-        const { completed, buffer, exit } = this.state;
+        let { children, classes, style, mUiProps } = this.props;
+        let { completed, buffer, exit } = this.state;
         
-        const Class = classNames({
+        let Class = classNames({
             [classes.fixTop]: style === 'fixed',
             [classes.normal]: style === 'normal'
         });

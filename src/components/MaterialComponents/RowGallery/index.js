@@ -22,13 +22,13 @@ const GridListTileBarClasses = {
  * @prop {Function} itemClick 点击画廊中的某图片,返回对应的title, (title)=>{}
  */
 function RowGallery(props) {
-    const { tileList, cols, itemClick } = props;
+    let { tileList, cols, itemClick } = props;
     function handleClickList (e) {
         let clickTitle = '';
         if (e.target.nodeName === 'IMG') {
             clickTitle = e.target.getAttribute('alt');
         } else {
-            const eClasses = e.target.getAttribute('class');
+            let eClasses = e.target.getAttribute('class');
             if (eClasses.includes('gl-title')) {
                 clickTitle = e.target.innerHTML;
             }

@@ -58,7 +58,7 @@ class IconTabs extends React.Component {
     };
 
     render() {
-        const { currentTab } = this.state;
+        let { currentTab } = this.state;
         
         if (this.props.tabList.length === 0) return null;
         return (

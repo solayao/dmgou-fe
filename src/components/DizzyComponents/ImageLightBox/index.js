@@ -41,7 +41,7 @@ class ImageActionModel extends React.PureComponent {
     }
 
     getOtherSrc = (currIndex, addIndex) => {
-        const {imageList, canPrevOrNext} = this.props;
+        let {imageList, canPrevOrNext} = this.props;
         let isFirst = currIndex === 0;
         let isLast = currIndex === (imageList.length - 1);
         if (isFirst && addIndex === -1) return undefined;
@@ -58,9 +58,9 @@ class ImageActionModel extends React.PureComponent {
     };
 
     render() {
-        const {createActionFunc, imageList} = this.props,
+        let {createActionFunc, imageList} = this.props,
             {isOpen, currentIndex} = this.state;
-        const imageListLength = imageList.length;
+        let imageListLength = imageList.length;
         return (
             <React.Fragment>
                 {createActionFunc(this.handleShow(true))}

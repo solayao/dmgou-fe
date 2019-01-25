@@ -59,8 +59,8 @@ class SnackbarModel extends React.Component {
     }
 
     render () {
-        const {open, messageInfo} = this.state, {snackbarProps, action} = this.props;
-        const {message, key} = messageInfo;
+        let {open, messageInfo} = this.state, {snackbarProps, action} = this.props;
+        let {message, key} = messageInfo;
         return (
             <Snackbar
                 key={key}

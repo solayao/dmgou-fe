@@ -99,7 +99,7 @@ class ScrollModel extends React.Component {
     }
 
     render() {
-        const {children, height} = this.props;
+        let {children, height} = this.props;
         return (
             <div className="wrapper" ref={this.wrapperRefs} style={{height: `${height}px`}}>
                 {children}

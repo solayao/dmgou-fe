@@ -1,8 +1,5 @@
 @import '../style/variable.scss';
-// pc
-$drawerWidth: 240px;
-// phone
-$_drawerWidth: $drawerWidth * 2.5;
+
 $topHeight: 63px;
 #root {
     min-height: 100vh;    
@@ -15,7 +12,6 @@ $topHeight: 63px;
     & > .ignore {
         position: absolute;
         top: $topHeight;
-        // bottom: 0;
         left: 0;
         right: 0;
         padding: 0 5px;
@@ -29,29 +25,6 @@ $topHeight: 63px;
                 padding-bottom: 0;
             }
         }
-    }
-}
-
-// overrides
-.drawer-shift {
-    width: $drawerWidth;
-    white-space: nowrap;
-
-    @media screen and ($discern_key: $discern_value) {
-        width: $_drawerWidth;
-    }
-}
-
-.abh-shift {
-    width: calc(100% - #{$drawerWidth})!important;
-    margin-left: $drawerWidth;
-
-    @media screen and ($discern_key: $discern_value) {
-        width: calc(100% - #{$_drawerWidth})!important;
-        margin-left: $_drawerWidth;
-    }
-    & .menuButton {
-        display: none;
     }
 }
 

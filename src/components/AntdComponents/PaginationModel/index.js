@@ -14,12 +14,12 @@ const defaultPageSizeOptions = ['10', '20', '30', '40'];
  * @prop {Object} options
  */
 function PaginationModel(props) {
-    const { sizeChangeFunc, changeFunc, current, total, options } = props;
-    const pageSizeOptions = options.pageSizeOptions || defaultPageSizeOptions;
-    const defaultPageSize = options.defaultPageSize || 10;
-    const pageSize = options.pageSize || 10;
-    const handleChange = (changPageNo, pageSize) => changeFunc(changPageNo, pageSize, current);
-    const handleShowTotal = total => `共 ${total} 条`;
+    let { sizeChangeFunc, changeFunc, current, total, options } = props;
+    let pageSizeOptions = options.pageSizeOptions || defaultPageSizeOptions;
+    let defaultPageSize = options.defaultPageSize || 10;
+    let pageSize = options.pageSize || 10;
+    let handleChange = (changPageNo, pageSize) => changeFunc(changPageNo, pageSize, current);
+    let handleShowTotal = total => `共 ${total} 条`;
     return (
         <Pagination
             showSizeChanger

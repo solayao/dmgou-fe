@@ -46,7 +46,7 @@ class LozadWrapper extends React.Component {
     }
 
     handleError = (e) => {
-        const {src, srcset, imgErrCB} = this.props, {retry} = this.state;
+        let {src, srcset, imgErrCB} = this.props, {retry} = this.state;
         if (!!this.img && !!this.img.current) {
             if (!retry) {
                 this.img.current.setAttribute('src', src);
@@ -69,7 +69,7 @@ class LozadWrapper extends React.Component {
     }
 
     render() {
-        const {src, srcset, alt, classes, style} = this.props;
+        let {src, srcset, alt, classes, style} = this.props;
         return (
             <img
                 key={shortid.generate()}

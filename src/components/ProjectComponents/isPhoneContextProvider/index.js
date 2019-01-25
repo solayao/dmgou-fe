@@ -33,7 +33,7 @@ class IsPhoneContextProvider extends React.PureComponent {
     }
 
     render() {
-        const {isPhone} = this.state;
+        let {isPhone} = this.state;
         return (
             <isPhoneContext.Provider value={isPhone}>
                 {this.props.children}

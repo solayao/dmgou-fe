@@ -7,7 +7,7 @@ import BoxHeader from '@proje/BoxHeader';
 import {isPhoneContext} from '@/store/context';
 
 function BoxModel (props) {
-    const {icon, message, action, data, maxNum} = props;
+    let {icon, message, action, data, maxNum} = props;
 
     return (
         <section className={classNames(mStyles['root'])}>

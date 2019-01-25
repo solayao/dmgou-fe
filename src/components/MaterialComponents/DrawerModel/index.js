@@ -34,13 +34,13 @@ const Fragment = React.Fragment;
  * @extends {Component}
  */
  function DrawerModel(props) {
-    const toggleDrawer = (state) => () => {
+    let toggleDrawer = (state) => () => {
         props.handleToggleDrawer(state);
     };
 
-    const { anchor, open, orClasses, variant } = props;
-    const C = props.isPhone ? SwipeableDrawer : Drawer;
-    const P = Object.assign(
+    let { anchor, open, orClasses, variant } = props;
+    let C = props.isPhone ? SwipeableDrawer : Drawer;
+    let P = Object.assign(
         props.isPhone ? {onOpen: toggleDrawer(true),disableDiscovery: true} : {},
         {
             onClose: toggleDrawer(false),

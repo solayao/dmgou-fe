@@ -62,7 +62,7 @@ const caaClasses = {
  */
 function MediaCard(props) {
     // 参数
-    const {layout, header, media, content, actions} = props;
+    let {layout, header, media, content, actions} = props;
  
     // 控件渲染
     return (

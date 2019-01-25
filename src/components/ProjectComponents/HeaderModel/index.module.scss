@@ -1,0 +1,32 @@
+@import '../../../style/variable.scss';
+
+.abh-shift {
+    width: calc(100% - #{$drawerWidth})!important;
+    margin-left: $drawerWidth;
+
+    @media screen and ($discern_key: $discern_value) {
+        width: calc(100% - #{$_drawerWidth})!important;
+        margin-left: $_drawerWidth;
+    }
+    & .menuButton {
+        display: none;
+    }
+}
+
+.phone-btn {
+    position: absolute;
+    right: 5vw;
+}
+
+.phone-top-search {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,.65);
+}
+
+.phone-top-search-histroy {
+    max-height: 80vh!important;
+    top: auto!important;
+}

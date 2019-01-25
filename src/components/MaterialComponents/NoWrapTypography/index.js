@@ -13,8 +13,8 @@ import Tooltip from '@material-ui/core/Tooltip';
  * @returns
  */
 function NoWrapTypography(props) {
-    const { children, isPhone, typographyProps, toolTipProps } = props;
-    const C = !isPhone ? Tooltip : React.Fragment;
+    let { children, isPhone, typographyProps, toolTipProps } = props;
+    let C = !isPhone ? Tooltip : React.Fragment;
     let typoProps =  {
         ...typographyProps,
         noWrap: true,

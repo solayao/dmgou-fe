@@ -39,10 +39,11 @@ class SearchInput extends React.Component {
 
     componentWillUnmount() {
         this.inputRef.removeEventListener('keypress', this.handleKeyPress);
+        this.inputRef = this.historyRef = this.queryResultList = null;
     }
 
     handleChangeShowText = (event) => {
-        const val = event.target.value;
+        let val = event.target.value;
         this.setState({
             queryProp: val,
             showHistory: Boolean(val)
@@ -52,7 +53,7 @@ class SearchInput extends React.Component {
     handleSelectHistory = (event) => {
         if (event.target.localName !== 'ul') {
             let val = event.target.innerText
-            const v = val.replace(/(^\s*)|(\s*$)/g, "");
+            let v = val.replace(/(^\s*)|(\s*$)/g, "");
             if (v !== NON_COMIC) {
                 this.setState({
                     showHistory: false,

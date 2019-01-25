@@ -17,7 +17,7 @@ import SkeletonModel from '../../AntdComponents/SkeletonModel';
  * @returns
  */
 function QueryModel(props) {
-    const { children, loadingType, loadingProps, loadingRender, ...queryProps } = props;
+    let { children, loadingType, loadingProps, loadingRender, ...queryProps } = props;
     if (getPrototypeType(children) !== 'Function') {
         console.error('[Error] Query模块的children应该是一个Function');
         return null;

@@ -57,7 +57,7 @@ class DialogModel extends React.Component {
     handleBtnClickBindThis = (btn) => () => btn.onClick(this);
 
     render() {
-        const {title, contentText, content, actions, dialogProps} = this.props, {open} = this.state;
+        let {title, contentText, content, actions, dialogProps} = this.props, {open} = this.state;
         return (
             <Dialog open={open} onClose={this.handleClose} ref={this.dialogRef} {...dialogProps}>
                 <DialogTitle>

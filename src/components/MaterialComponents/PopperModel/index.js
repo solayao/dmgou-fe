@@ -26,7 +26,7 @@ class PopperModel extends React.PureComponent {
     };
 
     handleClick = (event) => {
-        const { currentTarget } = event;
+        let { currentTarget } = event;
         this.setState(state => ({
           anchorEl: currentTarget,
           open: !state.open,

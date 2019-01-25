@@ -1,0 +1,10 @@
+@import '../../../style/variable.scss';
+
+.drawer-shift {
+    width: $drawerWidth;
+    white-space: nowrap;
+
+    @media screen and ($discern_key: $discern_value) {
+        width: $_drawerWidth;
+    }
+}

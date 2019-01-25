@@ -11,7 +11,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
  * @prop {Object} mUiProps material-Ui的属性 https://material-ui.com/api/circular-progress/
  */
 function LoadingCircular(props) {
-    const { children, mUiProps, classes, loading } = props;
+    let { children, mUiProps, classes, loading } = props;
 
     return (
         <div className={classNames(classes.wrapper, loading && classes.loadingWrapper)}>

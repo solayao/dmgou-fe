@@ -30,7 +30,7 @@ class PopModal extends React.Component {
 
     handleClick = (event) => {
         this.setState(({
-          open: !this.state.open,
+            open: !this.state.open,
         }), () => {
             let {autoClose, autoCloseTime} = this.props;
             if (autoClose && this.state.open) {

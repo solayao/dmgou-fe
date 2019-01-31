@@ -22,7 +22,7 @@ export const getComicDetail = gql`
             description
             author
             icon
-            state
+            status
             type
             last
             lastUpdate
@@ -50,7 +50,7 @@ export const getChapterGallery = gql`
 export const getAllComicType = gql`
     query getAllComicType {
         allComicTypeList {
-            state
+            status
             type
         }
     }
@@ -66,7 +66,8 @@ export const getSearchComicList = gql`
                 icon
                 last
                 type
-                state
+                status
+                zone
                 lastUpdate
             }
             page {
@@ -78,14 +79,14 @@ export const getSearchComicList = gql`
 `;
 
 export const getOneDayCommend = gql`
-    query getOneDayCommend ($keys: [String]) {
-        oneDayCommend (keys: $keys) {
+    query getOneDayCommend {
+        oneDayCommend {
             id
             icon
             author
             name
             type
-            state
+            status
             last
             description
         }

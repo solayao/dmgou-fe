@@ -20,12 +20,26 @@ import mStyle from './index.module.scss';
  * @extends {React.PureComponent}
  */
 class PopperModel extends React.PureComponent {
+    constructor (props) {
+        super(props);
+
+        this.timeoutId = null;
+    }
+    
     state = {
         anchorEl: null,
         open: false,
     };
 
+    componentWillUnmount () {
+        clearTimeout(this.timeoutId);
+
+        this.timeoutId = null;
+    }
+
     handleClick = (event) => {
+        clearTimeout(this.timeoutId);
+
         let { currentTarget } = event;
         this.setState(state => ({
           anchorEl: currentTarget,
@@ -33,7 +47,7 @@ class PopperModel extends React.PureComponent {
         }), () => {
             let {autoClose, autoCloseTime} = this.props;
             if (autoClose && this.state.open) {
-                setTimeout(() => {
+                this.timeoutId = setTimeout(() => {
                     this.setState({
                         open: false
                     });
@@ -44,7 +58,7 @@ class PopperModel extends React.PureComponent {
 
     render () {
         let {anchorEl, open} = this.state,
-            {btnNode, popNode, positionTop} = this.props;
+            {btnNode, popNode, positionTop, popPlacement} = this.props;
 
         return (
             <React.Fragment>
@@ -52,7 +66,7 @@ class PopperModel extends React.PureComponent {
                     style={{ top: `${positionTop}vh`}}>
                     {btnNode}
                 </div>
-                <Popper open={open} anchorEl={anchorEl} transition>
+                <Popper open={open} anchorEl={anchorEl} placement={popPlacement} transition>
                     {({ TransitionProps }) => (
                         <Fade {...TransitionProps}>
                             <Paper>
@@ -72,6 +86,7 @@ PopperModel.propTypes = {
     autoClose: PropTypes.bool,
     autoCloseTime: PropTypes.number,
     positionTop: PropTypes.number,
+    popPlacement: PropTypes.string,
 };
 PopperModel.defaultProps = {
     btnNode: (<Button>弹出窗口</Button>),
@@ -79,6 +94,7 @@ PopperModel.defaultProps = {
     autoClose: true,
     autoCloseTime: 10,
     positionTop: 90,
+    popPlacement: 'bottom'
 };
 
 export default PopperModel;

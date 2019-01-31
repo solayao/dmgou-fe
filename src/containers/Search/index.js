@@ -74,7 +74,11 @@ class SearchComponent extends React.Component {
         let newSearch = {};
 
         if (copy['n'] !== trim(d)) {
-            copy['n'] = trim(d);
+            let trimName = trim(d);
+
+            if (trimName.includes(' ')) copy['n'] = trimName.split(' ');
+            else copy['n'] = trimName;
+            
             newSearch = {...defaultPageProps};
         }
 
@@ -102,12 +106,12 @@ class SearchComponent extends React.Component {
     }
 
     handleGetSST = (obj) => {
-        let {sort, type, state} = obj;
+        let {sort, type, status} = obj;
         let {searchProps} = this.state;
         
-        searchProps['s'] = !!state ? state : undefined;
+        searchProps['s'] = !!status ? status : undefined;
 
-        searchProps['t'] = type.length > 0 ? type : undefined;
+        searchProps['t'] = isNotEmpty(type.length) ? type : undefined;
 
         this.setState({
             sort,

@@ -56,7 +56,7 @@ class ToolBox extends React.PureComponent {
         this.state = {
             sortVal: props.defaultSort,
             typeVal: props.defaultType,
-            stateVal: props.defaultState,
+            statusVal: props.defaultState,
         }
     }
     
@@ -73,7 +73,7 @@ class ToolBox extends React.PureComponent {
     }
 
     handleChangeState = (event, value) => {
-        this.handleChange('stateVal', value)
+        this.handleChange('statusVal', value)
     }
 
     handleChangeType = (value) => () => {
@@ -94,19 +94,19 @@ class ToolBox extends React.PureComponent {
 
     handleMakeSure = () => {
         let {setParentProps, changeCleanModal} = this.props;
-        let {sortVal: sort, typeVal: type, stateVal: state} = this.state;
+        let {sortVal: sort, typeVal: type, statusVal: status} = this.state;
 
         setParentProps({
             sort,
             type,
-            state,
+            status,
         });
 
         changeCleanModal(true);
     }
 
     render () {
-        let {sortVal, typeVal, stateVal} = this.state;
+        let {sortVal, typeVal, statusVal} = this.state;
 
         return (
             <FormControl className={mStyle['tool-box-root']}>
@@ -115,7 +115,7 @@ class ToolBox extends React.PureComponent {
                 </div>
                 <Query query={getAllComicType}>
                     {({data}) => {
-                        let {state, type} = data.allComicTypeList;
+                        let {status, type} = data.allComicTypeList;
                         return (
                             <div className={mStyle["tool-box"]}>
                                 <ExpansionCard header={(<SortHeader />)} content={(
@@ -135,10 +135,10 @@ class ToolBox extends React.PureComponent {
                                 )} actions={null} defaultExpanded={!!sortVal} />
 
                                 <ExpansionCard header={(<StateHeader />)} content={(
-                                    <RadioGroup value={stateVal} onChange={this.handleChangeState}
+                                    <RadioGroup value={statusVal} onChange={this.handleChangeState}
                                         row={true} className={mStyle['tool-group']}>
                                         {
-                                            Array.isArray(state) && state.filter(v => v).map(s => (
+                                            Array.isArray(status) && status.filter(v => v).map(s => (
                                                 <FormControlLabel
                                                     key={s}
                                                     control={
@@ -150,7 +150,7 @@ class ToolBox extends React.PureComponent {
                                             ))
                                         }
                                     </RadioGroup>
-                                )} actions={null} defaultExpanded={!!stateVal} />
+                                )} actions={null} defaultExpanded={!!statusVal} />
 
                                 <ExpansionCard header={(<TypeHeader />)} content={(
                                     <FormGroup row={true} className={mStyle['tool-group']}>

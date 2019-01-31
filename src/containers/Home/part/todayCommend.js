@@ -9,12 +9,9 @@ const loadingProps = {
     avatar: false,
 }
 
-const queryVariable = {keys: ['mx', 'mf', 'hg', 'qx', 'xy', 'jz', 'snv', 'snan']};
-
 function TodayCommend (props) {
     return (
-        <Query query={getOneDayCommend} variables={queryVariable}
-            loadingType="s" loadingProps={loadingProps}>
+        <Query query={getOneDayCommend} loadingType="s" loadingProps={loadingProps}>
             { ({data, refetch, client}) => {
                 let dataList = null;
                 if (isNotEmpty(data.oneDayCommend)) { // 有结果

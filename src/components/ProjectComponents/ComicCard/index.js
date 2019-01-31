@@ -15,7 +15,7 @@ const handleErrorCB = (socket, id) => () => {
 }
 
 function ComicCard (props){
-    let {id, name, icon, author, last, lastUpdate, state, type} = props;
+    let {id, name, icon, author, last, lastUpdate, status, type} = props;
 
     let linkProps = {
         pathname: '/detail',
@@ -53,10 +53,10 @@ function ComicCard (props){
         )
     };
 
-    let cardActions = state && type ? {
+    let cardActions = status && type ? {
         children: ( 
             <Fragment>
-                {state && type && <Typography component="p">{state} {type}</Typography>}
+                {status && type && <Typography component="p">{status} {type}</Typography>}
             </Fragment>
         )
     } : null;
@@ -82,7 +82,8 @@ ComicCard.propTypes = {
     last: PropTypes.string,
     lastUpdate: PropTypes.string,
     author: PropTypes.string,
-    state: PropTypes.string,
+    status: PropTypes.string,
+    type: PropTypes.array,
 };
 
 export default ComicCard;

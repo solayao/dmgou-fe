@@ -7,6 +7,10 @@ import mStyle from './index.module.scss';
 const CarouselModel = React.lazy(() => import('@antd/CarouselModel'));
 
 const createList = (dataArr, max) => {
+    if (dataArr.length === 0) {
+        return (<div>暂无资源</div>)
+    }
+
     if (!!max) {
         let pageSize = Math.floor(dataArr.length / max) + 1;
         let arr = new Array(pageSize).fill('');

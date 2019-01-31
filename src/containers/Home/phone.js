@@ -11,9 +11,11 @@ import mStyle from './index.module.scss';
 const RandomRead = React.lazy(() => import('./part/randomRead'));
 const TodayCommend = React.lazy(() => import('./part/todayCommend'));
 const TodayUpdate = React.lazy(() => import('./part/todayUpdate'));
+const YesterdayUpdate = React.lazy(() => import('./part/yesterdayUpdate'));
 
 const menuList = [
     { key: 'tu', title: '今日更新' },
+    { key: 'yu', title: '昨日更新' },
     { key: 'tc', title: '今日推荐' },
     { key: 'rr', title: '随机看看' },
 ]
@@ -57,6 +59,7 @@ class HomePhone extends React.PureComponent {
                 />
                 <BackTopModel />
                 {active === 'tu' && <TodayUpdate />}
+                {active === 'yu' && <YesterdayUpdate />}
                 {active === 'tc' && <TodayCommend />}
                 {active === 'rr' && <RandomRead />}
             </React.Fragment>

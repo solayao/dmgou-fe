@@ -9,7 +9,7 @@ function DetailPC (props) {
         <div className={mStyle["pc-detail-mess"]}>
             <img src={comicDetail.icon+'?w=200&h=300'} alt={comicDetail.name} />
             <Typography component="a" onClick={handleAuthorClick(comicDetail.author)}>作&emsp;&emsp;者：{comicDetail.author}</Typography>
-            <Typography component="p">状&emsp;&emsp;态：{comicDetail.state}</Typography>
+            <Typography component="p">状&emsp;&emsp;态：{comicDetail.status}</Typography>
             <Typography component="p">分&emsp;&emsp;类：{comicDetail.type}</Typography>
             <Typography component="p">更新日期：{comicDetail.lastUpdate}</Typography>
             <Typography component="p">最近更新：{comicDetail.last}</Typography>

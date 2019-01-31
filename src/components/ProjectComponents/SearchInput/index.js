@@ -95,13 +95,13 @@ class SearchInput extends React.Component {
         const {queryProp, showHistory} = this.state, {inputProps, historyClasses} = this.props;
  
         return (
-            <div className={mStyles["Dui-search-input"]}>
+            <div className={mStyles["search-input"]}>
                 <InputBase inputRef={this.inputBindRef} onChange={this.handleChangeShowText}
                     {...inputProps} />
 
                 <div ref={this.historyRef} 
-                    className={classNames(mStyles["Dui-search-history"],
-                        !showHistory && mStyles["Dui-search-history-hidden"], historyClasses)}>
+                    className={classNames(mStyles["search-history"],
+                        !showHistory && mStyles["search-history-hidden"], historyClasses)}>
                     <Query query={getComicListByName} variables={{name: queryProp}} skip={!Boolean(showHistory)}>
                         {({data}) => {
                             const {comicListByName} = data;

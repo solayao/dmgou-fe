@@ -27,7 +27,7 @@ class ChapterPC extends React.PureComponent {
 
     state = {
         imgNo: 1,
-        hasBarrage: true,
+        hasBarrage: false,
         imgLoadOrError: false
     }
 
@@ -108,11 +108,7 @@ ChapterPC.propTypes = {
     changeChapter: PropTypes.func,
 }
 ChapterPC.defaultProps = {
-    imgList: [
-        '/getImg/overseas/dmzj/img/12/20100109_5320f4f20a8aab8a89a2YDKSyjq8yRZp.jpg',
-        '/getImg/domestic/dmzj/img/11/1007321311539747852.jpg',
-        '/getImg/overseas/dmzj/img/14/langyuxiangxinliao0119.jpg'
-    ]
+    imgList: []
 }
 
 export default ChapterPC;

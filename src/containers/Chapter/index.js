@@ -62,6 +62,7 @@ class ChapterComponent extends React.PureComponent {
         socketio.emit('fe-crawler-by-ch', ch);
 
         socketio.on('fe-crawler-by-ch-back', data => {
+            console.log(data)
             this.setState({
                 socketImgList: data
             })
@@ -100,17 +101,23 @@ class ChapterComponent extends React.PureComponent {
                         loadingRender={(<QueryLoading />)}>
                         {({data}) => {
                             let {name, imgList} = data.chapterDetailGallery;
+
+                            imgList = Array.isArray(imgList) ? imgList : [];
         
-                            // if (imgList.length === 0 && !socketImgList) {
-                            //     this.handleSocket(socket, ch);
-                            //     return (<QueryLoading />);
-                            // } else if (socketImgList && socketImgList.length === 0) {
-                            //     $Snackbar({
-                            //         content: '没有该漫画资源'
-                            //     });
-                            //     history.go(-1);
-                            //     return null;
-                            // }
+                            if (imgList.length === 0 && !socketImgList) {
+                                this.handleSocket(socket, ch);
+                                return (<QueryLoading />);
+                            } else if (socketImgList && socketImgList.length === 0) {
+                                $Snackbar({
+                                    content: '没有该漫画资源'
+                                });
+                                history.go(-1);
+                                return null;
+                            }
+
+                            let showImg = imgList.length > 0 ? imgList : socketImgList;
+
+                            showImg = showImg.map(uri => encodeURI(uri));
 
                             return (
                                 <div className={mStyle['chapter-root']}>
@@ -120,7 +127,7 @@ class ChapterComponent extends React.PureComponent {
                                     
                                     <this.C currentCh={ch} chapterList={this.chapterIdList} 
                                         changeChapter={this.changeChapter} 
-                                        // imgList={imgList}
+                                        imgList={showImg}
                                         />
                                 </div>
                             )

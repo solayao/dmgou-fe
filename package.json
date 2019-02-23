@@ -6,7 +6,7 @@
   "dependencies": {
     "@material-ui/core": "^3.9.0",
     "@material-ui/icons": "^3.0.2",
-    "antd": "^3.12.3",
+    "antd": "^3.13.5",
     "apollo-boost": "^0.1.23",
     "better-scroll": "^1.13.4",
     "classnames": "^2.2.6",
@@ -32,7 +32,9 @@
     "socket.io-client": "^2.2.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.3.3",
     "@babel/plugin-proposal-decorators": "^7.2.3",
+    "babel-plugin-import": "^1.11.0",
     "customize-cra": "^0.2.9",
     "http-proxy-middleware": "^0.19.1",
     "less": "^3.9.0",

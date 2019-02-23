@@ -8,6 +8,7 @@ module.exports = function(app) {
     app.use(proxy('/socket.io', { 
         // target: 'http://47.98.186.3:4628',
         target: 'http://127.0.0.1:4627',
+        changeOrigin: true,
         ws:true
     }));
 };
